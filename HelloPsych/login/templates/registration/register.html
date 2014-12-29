@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block extra_style %}
+	<style type="text/css">
+        input { 
+        height:35px;
+        line-height:normal;
+        padding:7px;
+        font-size:16px;
+        width:230px;
+        outline: none;
+        border: 1px solid #fef8a0; 
+        -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	
+
+	    border-bottom-right-radius:15px;
+		border-top-right-radius:15px;
+	    }
+	    input:focus{
+			 	border: 2px solid #09C;
+        	outline: 0 none;	    
+	    }
+	.Fields{
+			margin-left: -0.2em;
+			margin-top: 10px;
+	}
+	label {font-size:15px; background-color:#8E8E95;width:11em;color:#fff;height: 2.3em;
+		text-align: center;
+		-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+		border-bottom-left-radius:15px;
+		border-top-left-radius:15px;	   
+		line-height: 230%;
+		margin-left: 5em;
+		margin-top: 1em;
+	   }
+	.Popregister{
+			background: #ffffff; /* Old browsers */
+			background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+			background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+			margin-top: 1em;
+			border-radius:10px;
+			overflow:hidden;
+			width: 40em;
+			margin-bottom: 3em;
+			margin-top: 3em;
+			margin-left: auto;
+			margin-right: auto;
+	}
+	::-webkit-input-placeholder {color:#B2B2B2;}
+	:-moz-placeholder				 {color:#B2B2B2;}
+	::-moz-placeholder			 {color:#B2B2B2;}
+	:-ms-input-placeholder 		 {color:#B2B2B2;}
+	select{
+		width:15em;	
+		background:#fff;
+     	color:#000;
+      font-family: Tahoma, Geneva, sans-serif;
+      height:35px;
+      border: 1px solid #8E8E95;
+		font-size:1em;
+		margin-left: -2em;
+		margin-top:10px;
+		border-color: 2px #C9C9C9;
+	}
+	tbody{
+		margin-top: -3em;	
+	}
+	.reg{
+		margin-top: 0.5em;
+		margin-left: auto;
+		margin-right: auto;	
+		margin-bottom: 2em;
+	}
+	.error1{
+			background-color: #FFA6A6;
+			width: 35em;
+			margin-left: 2.5em;
+	}
+	</style>
+{% endblock %}
+
+{% block content %}
+
+<!--<div class="col-md-6" style="position: absolute;top: 20%; margin-top: -50px;margin-left:25%">-->
+<div class="content">	
+	<div class="Popregister" style=" box-shadow:5px 5px 10px #888888;padding-top:10px" > 
+		<div style="text-align:center">
+			<form method="post" action=".">{% csrf_token %}
+
+			<h2 align="center"><strong>Registration Form</strong></h2>
+			<hr style="border:none">
+			<div class="error1">{{ form.non_field_errors }}</div>
+			{% for field in form %}
+    			<div class="error1">
+        			{{ field.errors }}
+    			</div>
+			{% endfor %}
+			<table align="center" cellpadding="10">
+		
+			<tr>
+				<th><label for="id_fname">First Name</label></th><td>{{ form.fname }}</td>
+			</tr>
+			<tr>	
+				<th><label for="id_fname">Last Name</label></th><td>{{ form.lname }}</td>
+			</tr>
+			<tr>	
+				<th><label for="id_fname">Email</label></th><td>{{ form.email }}</td>
+			</tr>	
+			<tr>
+				<th><label for="id_fname">Username</label></th><td>{{ form.username }}</td>
+			</tr>
+			<tr>
+				<th><label for="id_fname">Password</label></th><td>{{ form.password1 }}</td>
+			</tr>
+			<tr>
+				<th><label for="id_fname">Repeat Password</label></th><td>{{ form.password2 }}</td>
+			</tr>
+			<tr>		
+				<th><label for="id_fname">Account Type</label></th><td>{{ form.acc_type }}</td>
+			</tr>				
+			
+			</table>
+			<hr style="border:none">
+			<input class="btn btn-primary reg" type="submit" value="Register" style="font-size:17px" />
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+from django.conf.urls import patterns, include, url
+
+# Uncomment the next two lines to enable the admin:
+from django.contrib import admin
+admin.autodiscover()
+
+urlpatterns = patterns('',
+    # Examples:
+    # url(r'^$', 'psychiatrywalk.views.home', name='home'),
+    # url(r'^psychiatrywalk/', include('psychiatrywalk.foo.urls')),
+     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+     url(r'^vline/$', include('vline.urls')),
+     url(r'^i18n/',include('django.conf.urls.i18n')),
+     url(r'^login/$','psyche.views.login_user'),
+     url(r'^post/$','psyche.views.post'),
+     url(r'^get/$','psyche.views.get'),
+    # Uncomment the admin/doc line below to enable admin documentation:
+     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+     url(r'^reg/', include('login.urls')),
+    # Uncomment the next line to enable the admin:
+     url(r'^admin/', include(admin.site.urls)),
+)

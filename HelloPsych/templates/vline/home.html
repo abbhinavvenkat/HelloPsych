@@ -1,0 +1,255 @@
+{% extends "vbase.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block body %}
+<style type="text/css">
+.side-panel{
+	width:20%;
+	height:95vh;
+	float: left;
+	margin-top: 1em;
+	margin-left: 1em;
+}
+#myvid1{
+	height:95vh; 
+	width:76%;
+	float: left;
+	margin-left: 1em;
+	margin-top: 1em;
+	}
+#myvid2{
+	height:95vh; 
+	width:98%;
+	float: left;
+	margin-left: 1em;
+	
+}	
+#myvid{
+	height:98%;
+	width:98%;
+	position: relative;
+}	
+
+.list-call, .list-function,.notes-on{
+	background: #909097;
+	border: 2px solid #fff;
+	padding-top: 15px;
+	padding-left: 10px;
+	color:#fff;
+	border-radius: 10px;
+	font-style: italic;
+}
+.list-function{
+	padding-bottom: 10px;
+	margin-top: 1em;
+}
+.cntrl{
+	margin-left: 30px;
+}
+.notes-on{
+	height: 50%;
+	margin-top: 1em;
+}
+</style>
+
+<script>
+function check(){
+	var req_id, textis;
+    req_id = {{req_id}}
+    textis = document.getElementById("docnotes").value;
+    
+    $.ajax({
+    url: "/update_comments/",
+    type: "GET",
+    data: {'req_id': req_id, 'textis':textis},
+    success: function(data) {
+        document.getElementById("ret").value = "Saved";
+    },
+    failure: function(data) { 
+        document.getElementById("ret").value = "Error while Saving";
+
+    }
+}); 
+
+}
+</script>
+
+{% if users %}
+
+{% if imdoc %}	
+<div  style="overflow: hidden;">
+    <div class="side-panel breadcrumb">
+    	<div class="list-call">
+    		<p style="font-size:12px;"> <strong>Note:</strong>When the Button goes green click on Call to intiate the Video consultation.</p>
+        	<p>
+        	<button  data-userid="{{ users.id }}" class="btn cntrl btn-default callbutton">Call {{ users.displayName }}</button>
+        	</p>
+        	
+      	</div>
+      	<div class="list-function">
+    	{% for i in appointments %}
+			<div>
+				<p>Talking with {{i.patient.first_name}} {{i.patient.last_name}} </p>
+				<p>Start Time: {{i.start_tim}}  </p><p>End time: {{i.end_tim}}</p> 
+			</div>
+			<form>
+				<input type="hidden" name="appointID" value="{{i.id}}">
+				<input type="hidden" name="docID" value="{{i.doc.id}}">
+				<!--<input class="btn btn-default" name="reschedule" type="submit" value="Reschedule"/>-->
+				<input class="btn btn-default" style="margin-left:20px;" name="sentpres" type="submit" value="Fill in Prescription"/>
+			</form>
+		{% endfor %}
+		</div>
+		<div class="notes-on">
+		Appointment Notes	
+		<textarea rows="5" cols="20" id="docnotes" name="docnotes"> </textarea><br><br>
+		<div id="ret"></div>	
+        <button id ="likes" class="btn btn-default" type="button" onclick="check()">Save</button>
+
+		</div>
+    </div>
+    <div id="myvid1" class="breadcrumb">
+    	<div id="myvid" style="position:relative;">
+		</div>
+    </div>
+</div>	
+{% else %}
+<style>
+#facebookG{
+	width:128px}
+
+.facebook_blockG{
+	background-color:#FFFFFF;
+	border:3px solid #000000;
+	float:left;
+	height:91px;
+    margin-left:7px;
+	width:24px;
+	opacity:0.1;
+	-moz-animation-name:bounceG;
+	-moz-animation-duration:1.3s;
+	-moz-animation-iteration-count:infinite;
+	-moz-animation-direction:linear;
+	-moz-transform:scale(0.7);
+	-webkit-animation-name:bounceG;
+	-webkit-animation-duration:1.3s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-direction:linear;
+	-webkit-transform:scale(0.7);
+	-ms-animation-name:bounceG;
+	-ms-animation-duration:1.3s;
+	-ms-animation-iteration-count:infinite;
+	-ms-animation-direction:linear;
+	-ms-transform:scale(0.7);
+	-o-animation-name:bounceG;
+	-o-animation-duration:1.3s;
+	-o-animation-iteration-count:infinite;
+	-o-animation-direction:linear;
+	-o-transform:scale(0.7);
+	animation-name:bounceG;
+	animation-duration:1.3s;
+	animation-iteration-count:infinite;
+	animation-direction:linear;
+	transform:scale(0.7);
+}
+
+#blockG_1{
+	-moz-animation-delay:0.39s;
+	-webkit-animation-delay:0.39s;
+	-ms-animation-delay:0.39s;
+	-o-animation-delay:0.39s;
+	animation-delay:0.39s;
+}
+
+#blockG_2{
+	-moz-animation-delay:0.52s;
+	-webkit-animation-delay:0.52s;
+	-ms-animation-delay:0.52s;
+	-o-animation-delay:0.52s;
+	animation-delay:0.52s;
+}
+
+#blockG_3{
+	-moz-animation-delay:0.65s;
+	-webkit-animation-delay:0.65s;
+	-ms-animation-delay:0.65s;
+	-o-animation-delay:0.65s;
+	animation-delay:0.65s;
+}
+
+@-moz-keyframes bounceG{
+0%{
+	-moz-transform:scale(1.2);
+	opacity:1
+}
+
+100%{
+	-moz-transform:scale(0.7);
+	opacity:0.1}
+}
+
+@-webkit-keyframes bounceG{
+	0%{
+		-webkit-transform:scale(1.2);
+opacity:1}
+
+	100%{
+		-webkit-transform:scale(0.7);
+opacity:0.1}
+
+}
+
+@-ms-keyframes bounceG{
+	0%{
+		-ms-transform:scale(1.2);
+opacity:1}
+
+	100%{
+		-ms-transform:scale(0.7);
+opacity:0.1}
+
+}
+
+@-o-keyframes bounceG{
+	0%{
+		-o-transform:scale(1.2);
+opacity:1}
+
+	100%{
+		-o-transform:scale(0.7);
+opacity:0.1}
+
+}
+
+@keyframes bounceG{
+	0%{
+transform:scale(1.2);
+opacity:1}
+
+	100%{
+transform:scale(0.7);
+opacity:0.1}
+
+}
+
+</style>
+<div class="breadcrumb" style="width:98%;margin-left:1em;margin-top:1em;"> Note: </div>
+<div id="myvid2" class="breadcrumb">
+	<div id="facebookG" style="margin-left:45%; top:200%;position:absolute">
+		<div id="blockG_1" class="facebook_blockG">
+		</div>
+		<div id="blockG_2" class="facebook_blockG">
+		</div>
+		<div id="blockG_3" class="facebook_blockG">
+		</div>
+		<h4>Please wait for your call</h4>
+	</div>
+	<div id="myvid" style="position:relative;">
+	</div>
+</div>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

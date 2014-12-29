@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="modal" style="text-align:center">
+              <div class="modal-header">
+                <h3>Tell us a bit about yourself!</h3>
+              </div>
+
+<form action="." method=POST>{% csrf_token %}
+
+<input type="radio" name="sex" value="male" checked="checked">Male &nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="sex" value="female">Female
+<br>
+<br>
+Age
+<select name="age">
+<option value="lt18"> < 18 </option>
+{% for i in range %}
+<option value="{{i}}"> {{i}} </option>
+{% endfor %}
+<option value="gt70"> >70 </option>
+</select>
+<br>
+<input type="radio" name="marital" value="S" checked="checked">Single&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="marital" value="M">Married
+<input type="radio" name="marital" value="D">Divorced
+<br>
+<br>
+
+<button type="submit" class="btn btn-large btn-success">Continue</button>
+</form>
+
+<br><br>
+Not Logged In?
+
+<a href="{% url 'login:login' %}">Login</a>
+<a> |</a>
+<a href="{% url 'login:register' %}">Register</a>
+<br><br>             </div>
+
+
+{% endblock %}

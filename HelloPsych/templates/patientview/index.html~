@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static "css/jquery.jgrowl.css" %}" media="all">
+<script type="text/javascript" src="{% static "js/jquery.jgrowl.js" %}"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+		$.ajaxSetup({
+cache : false,
+timeout : 1000 * 10
+//set a global ajax timeout of a minute
+});
+		$("#class1").click(function(){
+			$.jGrowl("Hello world!");
+			});
+		noti(); // do the first poll			
+		})
+function noti(){
+	$.get('/notify/', function(data) {
+			if(data!=""){				
+			recs=data.split('$');
+			$.jGrowl.defaults.pool = recs.length-1;
+			$.jGrowl.defaults.position = 'bottom-left';
+			var i = 0;
+			setInterval( function() 
+				{
+				if ( i < recs.length-1 ) 
+				{	
+				$.jGrowl("", 
+					{
+header: recs[i],
+sticky:	(i % 3 == 0) ? true : false,
+life: 			20000,
+});
+				}
+				i++;
+				} , 1000 );
+}
+});
+doPoll();
+}
+
+function doPoll()
+{
+$.get('/getp/', function(data) {
+//	alert("hi");	
+		if(data!="")
+		{       
+		//alert(data);
+		recs=data.split(',');
+		//alert(recs[0]);
+		fname=recs[0].split(':')[0];
+		lname=recs[0].split(':')[1];
+		req_id=recs[0].split(':')[2];
+		alert('Your call with doctor ' + fname + ' ' + lname + ' is ready. Press OK to proceeed to call');
+		window.location.href="../../call/doctor/" + req_id;
+		}
+
+});
+$.get('/getb/',function(data){
+		//alert(data);
+		if(data!="")
+		{
+			recs=data.split(':');
+			var disp="Doctor " + recs[0] + " "  + recs[1] + " is going to take your emergency call. Press OK to continue";
+			alert(disp);
+			window.location.href="../../icall/doctor/" + recs[2];
+		}
+	}
+);
+setTimeout(doPoll, 1000);
+}
+</script>
+<style>
+#paneclass {
+	        border-radius: 4px;
+	        -webkit-border-radius: 4px;
+	        -moz-border-radius: 4px;
+	        -o-border-radius: 4px;
+	        -khtml-border-radius: 4px;
+		background: #fff;
+		border: 1px solid;
+	        border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	        -webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	        -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	        box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+		padding:15px;
+}
+
+.doc-row{
+	width:20em;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 2.5em;
+	padding-top: 1em;
+}
+
+.doc-part{
+			overflow:hidden;
+			width:25em;
+			margin-left: 1.5em;
+			height: 30em;
+			overflow-y: scroll;
+}
+.select-doc{
+	margin-left:1.5em;
+	width:25em;
+}
+.doc-select{
+	margin-left: auto;
+	margin-right: auto;
+}
+.welcome-css{
+	width: 60%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.credits{
+	width:25em;
+	overflow: hidden;
+	margin-left:71em;
+	position: absolute;
+	margin-top: 4em;
+}
+.buy-credit{
+	float: right;
+}
+.call-request{
+	position: absolute;
+	margin-left: 71em;
+	width:25em;
+	margin-top: 8em;
+}
+.callbtn{
+	float: right;
+}
+
+</style>
+<div class="patient-dashboard">
+	<h1 class="breadcrumb welcome-css">Welcome to HelloPsych <strong> {{ usrname }} </strong></h1>
+
+	<div class="credits breadcrumb">
+			You have {{pat.credits}} Credits!&nbsp;
+	<a href="{% url 'patient:buy' %}"><button class="btn btn-primary buy-credit" type="button" >Buy Credits</button></a>
+	</div>	
+	
+	<div class="call-request breadcrumb">
+		{% if not bflag %}
+		<!--	<a class="btn btn-danger callbtn" onclick="alert('Doctors have been informed that you wish an emergency consultation. Please hang on as a doctor is expected to respond.');" href="../broadcast?next=/welcome/index"> Make a Call Instantly </a>
+		-->
+		{% else %}
+			<a class="btn btn-primary callbtn" onclick="alert('Please be Patient, Doctors have been intimated about your urgent request.');" href="#">Instant Call request made!</a>
+		{% endif %}
+		
+		{% if not first %}
+				<p style="color:red;">You can avail your first call with a doctor for free!</p>
+		{% endif %}
+		{% for i in appointments %}
+			<div>{{i.dts}}&nbsp;{{i.doc}}&nbsp;{{i.ailment}}</div>
+		{% endfor %}
+
+	</div>		
+	<div class="select-doc breadcrumb">
+		<form action="." method = POST>{% csrf_token %}
+			<select class="form-control doc-select" name="concern" onchange="this.form.submit()">
+  				<option name="concern" value="">Choose a Category</option>
+  				<option name="concern" value="all">All</option>
+  				<option name="concern" value="addiction">Addiction</option>
+  				<option name="concern" value="depression">Depression</option>
+  				<option name="concern" value="fear">Fear</option>
+  				<option name="concern" value="life">Life</option>
+  				<option name="concern" value="relationship">Relationship</option>
+  				<option name="concern" value="halu">Hallucination</option>
+  				<option name="concern" value="edu">Education</option>
+  				<option name="concern" value="anon">Others</option>
+			</select>
+		</form>
+		</div>
+	<div class="doc-part breadcrumb">
+		
+	
+		{% for i in docs %}
+			<div class="doc-row">
+			  <div class="docprof">
+				<div class="thumbnail">
+					<img src="/{{i.propic}}" style="height:10em;width:10em;">
+					<div class="caption">
+						<h3><a href="../../dr/{{i.username}}">Dr.{{i.first_name}}&nbsp;{{i.last_name}}</a> </h3>
+						<p>						
+						{% if  i.rflag %}
+							<a href="#" class="btn btn-success" >Call Requested</a>
+						{% else %}
+							<a href="../../cal/{{i.id}}?next=/welcome/index"><button class="btn btn-success" onClick="smsdoc('{{i.phone_no}}','{{user.username}}');"> Request Call</button></a> 
+						{% endif %}
+						<a href="../../dr/{{i.username}}" class="btn btn-primary" role="button">Visit Profile</a>
+						</p>	
+					</div>
+				</div>
+				</div>
+			</div>			
+			{% if forloop.counter|divisibleby:"4" %}
+			{% endif %}
+		{% endfor %}
+		</div>
+		{% for i in appointments %}
+			<div>Appointment with {{i.doc.first_name}} {{i.doc.last_name}} scheduled at {{i.start_tim}} on {{i.date_booked}} </div>
+			<form>
+			<input type="hidden" name="appointID" value="{{i.id}}">
+			<input type="hidden" name="docID" value="{{i.doc.id}}">
+			<input name="cancel" type="submit" value="Cancel"/>
+			<input name="reschedule" type="submit" value="Reschedule"/>
+			</form>
+		{% endfor %}
+	</div>
+
+				
+		
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+</div>
+{% endblock %}

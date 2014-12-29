@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<script>
+<!--	$('#id_password').attr("placeholder","placeholder text"); -->
+</script>
+<style type="text/css">
+	#id_username,#id_password { padding:10px }
+    input { 
+      height:35px;
+      line-height:normal;
+      padding:7px;
+      font-size:16px;
+      width:200px;
+      outline: none;
+      border: 1px solid #fef8a0; 
+      -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   border-bottom-right-radius:15px;
+		border-top-right-radius:15px;
+	    }
+	.Popregister{
+			background: #ffffff; /* Old browsers */
+			background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+			background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+			margin-top: -1em;
+			border-radius:10px;
+			overflow:hidden;
+			width:30em;
+	}
+		label {font-size:15px; background-color:#8E8E95;width:11em;color:#fff;height: 2.3em;
+		text-align: center;
+		-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+		border-bottom-left-radius:15px;
+		border-top-left-radius:15px;	   
+		line-height: 230%;
+	   }
+	   #id_username{margin-left:-2.4em;margin-top:-0.3em; }
+	   #id_password{margin-left:-2.4em;margin-top:-0.3em; }
+	   .reg{
+				margin-bottom: 2em;
+		}
+		#error_login{color:red;border: 2px solid red; width:25em; height:5em;margin-left:2.5em; }
+	
+</style>
+<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" style="position: absolute;top: 25%; margin-top: -50px">
+	<div class="Popregister" style=" box-shadow:5px 5px 10px #888888;padding-top:10px" > 
+		<div style="text-align:center;width:100%">
+	   	<h2>Sign In</h2>
+			<hr style="border:none">
+		<!--	<form method="post" action=".">{% csrf_token %}
+			<table align="center" cellpadding="10">			
+				<tr>
+					<th><label for="id_fname">Username</label></th><td>{{ form.username }}</td>
+				</tr>
+				<tr>
+					<th><label for="id_fname">Password</label></th><td>{{ form.password }}</td>
+				</tr>				
+			</table>
+			{% if form.errors %}
+				<div id="error_login">		
+					<p style="margin-top:10px">Your username and password didn't match.</p> <p>Please try again.</p>
+				</div>	
+			{% endif %}
+			<center>
+				<input type="submit" class="btn btn-primary btn-block reg" value="Sign In" style="margin-top:20px;width:50%;font-size:17px"/>
+			</center>
+			<input type="hidden" name="next" value="/home" />
+			</form>-->
+			<form class="form-inline" role="form" action="{% url 'patient:authentication' %}" id="search" method="post">{% csrf_token %}
+					<div class="form-group" >						
+						<input type="text" name="username" autocomplete="off"  placeholder="Username" class="form-control" style="width:200px;color:#737373;font:15px Arial,Helvetica,Sans-serif;">
+					</div>
+					<div class="form-group" >
+						<input type="password" name="password"  autocomplete="off" class="form-control" placeholder="Password" style="width:200px;color:#737373;font:15px Arial,Helvetica,Sans-serif;">
+					</div>
+					<button type="submit" class="btn btn-default" style="margin-left:10px; background: -webkit-linear-gradient(#637bad, #4f67a4);border: 1px solid #1d3871;-webkit-border-radius: 3px;-webkit-box-shadow: 0 1px 0 #6f85b3 inset, 0 1px 1px rgba(0,0,0,.18);background: -moz-linear-gradient(#637bad, #4f67a4);-moz-border-radius: 3px;-moz-box-shadow: 0 1px 0 #6f85b3 inset, 0 1px 1px rgba(0,0,0,.18); color:#fff">Sign in</button>
+		   </form>
+
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base_quest.html" %}
+
+{% block content %}
+{% load staticfiles %}
+        {% for i in appointments %}
+        <div>{{i.dts}}&nbsp;{{i.doc}}&nbsp;{{i.ailment}}</div>
+        {% endfor %}
+{% endblock %}
+

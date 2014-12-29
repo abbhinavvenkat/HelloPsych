@@ -1,0 +1,94 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+  <meta charset="utf-8">
+  <title>Meet A Shrink!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+	
+	
+	<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"> 
+	<link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet"> 
+	<link href="{% static "css/style.css" %}" rel="stylesheet"> 
+
+
+	
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static "img/apple-touch-icon-144-precomposed.png" %}"> 
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "img/apple-touch-icon-144-precomposed.png" %}">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "img/apple-touch-icon-72-precomposed.png" %}">
+  <link rel="apple-touch-icon-precomposed" href="{% static "img/apple-touch-icon-57-precomposed.png" %}">
+  <link rel="shortcut icon" href="{% static "img/favicon.png" %}">
+		<link rel="stylesheet" type="text/css" href="{% static "css/style(carousel).css" %}" />
+		<link rel="stylesheet" type="text/css" href="{% static "css/jquery.jscrollpane.css" %}" media="all" />
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
+ 
+	<script src="{%static "js/jquery.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/scripts.js" %}"></script>
+
+	<script type="text/javascript" src="{% static "js/eldarion-ajax-core.js" %}"></script>
+	
+	<script type="text/javascript" src="{% static "js/eldarion-ajax-handlers.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/eldarion-ajax.min..js" %}"></script> 
+{% block extra_style %}{% endblock %}
+</head>
+
+<body>
+
+<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+
+<ul class="nav pull-right" style="
+    color: #bbb;
+    padding-top: 9px;
+">Not Logged In? <a href="/accounts/login/" style="
+    color: yellow;
+">Login</a> | <a href="/accounts/login/register" style="
+    color: aqua;
+">Register</a></ul>					 <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="{% url 'patient:patient' %}" class="brand">Work in progress ...</a>o						<div class="nav-collapse collapse navbar-responsive-collapse">
+							
+							<ul class='nav'>
+							
+								{% if flag %}
+								<li>
+									{% if not imdoc %}<a href="{% url 'login:editprofile' %}">{% else %}<a href="/dr/{{user}}">{% endif %}Profile</a>
+								</li>
+								
+								<li>
+									<a href="{% url 'login:logout' %}">Logout</a>
+								</li>
+								{% endif %}
+							</ul>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+
+{% block content %}
+
+{% endblock %}
+
+
+
+		<script type="text/javascript" src="{% static "js/jquery.easing.1.3.js" %}"></script>
+		
+		<script type="text/javascript" src="{% static "js/jquery.mousewheel.js" %}"></script>
+		<script type="text/javascript" src="{% static "js/jquery.contentcarousel.js" %}"></script>
+		<script type="text/javascript">
+			$('#ca-container').contentcarousel();
+		</script>
+</body>
+</html>

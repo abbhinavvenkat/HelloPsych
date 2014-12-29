@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+{% block extra_style %}
+<link rel="stylesheet" type="text/css" href="{% static "css/style(carousel).css" %}" />
+
+
+
+<link rel='stylesheet' href="{% static "cupertino/jquery-ui.min.css" %}" />
+<link href="{% static "fullcalendar/fullcalendar.css" %}" rel='stylesheet' />
+<link href="{% static "fullcalendar/fullcalendar.print.css" %}" rel='stylesheet' media='print' />
+<script src="{%static "lib/jquery.min.js" %}"></script>
+<script src="{% static "lib/jquery-ui.custom.min.js" %}"></script>
+<script src="{% static "fullcalendar/fullcalendar.min.js" %}"></script>
+<script>
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		$('#calendar').fullCalendar({
+			defaultView: 'agendaDay',
+			theme: true,
+			editable: true,
+			events: [
+				{
+					title: 'All Day Event',
+					start: new Date(y, m, 1)
+				},
+				{
+					title: 'Long Event',
+					start: new Date(y, m, d-5),
+					end: new Date(y, m, d-2)
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d-3, 16, 0),
+					allDay: false
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d+4, 16, 0),
+					allDay: false
+				},
+				{
+					title: 'Meeting',
+					start: new Date(y, m, d, 10, 30),
+					allDay: false
+				},
+				{
+				
+					title: 'Lunch',
+					start: new Date(y, m, d, 12, 0),
+					end: new Date(y, m, d, 14, 0),
+					allDay: false
+				},
+				{
+					title: 'Birthday Party',
+					start: new Date(y, m, d+1, 19, 0),
+					end: new Date(y, m, d+1, 22, 30),
+					allDay: false
+				},
+				{
+					title: 'Click for Google',
+					start: new Date(y, m, 28),
+					end: new Date(y, m, 29),
+					url: 'http://google.com/'
+				}
+			]
+		});
+		
+	});
+
+	
+
+	
+
+
+	
+
+</script>
+<style>
+
+	body {
+		margin-top: 40px;
+		text-align: center;
+		font-size: 13px;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		}
+
+	#calendar {   
+ 
+		width:500px;
+		margin: 0 auto;
+		}
+
+</style>
+
+
+<script type="text/javascript">
+	
+
+	$(document).ready(function() {
+
+		$.ajaxSetup({
+			cache : false,
+			timeout : 1000 * 30
+		//set a global ajax timeout of a minute
+		});
+
+		doPoll(); // do the first poll
+
+	});
+
+	// For every 5 seconds get poll the message for the users. If no messages available, server will return the online users list
+	function doPoll() {
+		$.get('/get/', function(data) {
+			/*if (data.indexOf('ACTIVE:') != -1) {
+				users_list = data.sModal plit('ACTIVE:')[1];
+				build_chat_links(users_list);
+			} else {Modal dr/dashboard/praj/#myModal
+				username = data.split(':')[0];
+				message = data.split(':')[1];
+				
+				update_chat_message(username, check_vchat_req(message, username))
+			}*/
+			
+			if(data!="")
+			{	
+				//alert(data);
+				recs=data.split(',');
+				var l=document.createElement('li');
+				var a=document.createElement('a');
+				
+
+				for(i=0;i<recs.length-1;i++)
+				{
+					fname=recs[i].split('&')[0];
+					lname=recs[i].split('&')[1];
+					req_id=recs[i].split('&')[2];
+					alert(recs[i].split('&')[3]);
+					//alert(req_id);
+					l=document.createElement('li');
+					linkS='<a href="../../../call/patient/'+ req_id +'">';
+					//alert(linkS);
+					l.innerHTML=linkS + 'Call with '+ fname + ' ' + lname+'</a>';
+					document.getElementById('call_list').appendChild(l);
+					alert("Request for call received from " + fname + " " + lname);
+				}
+			}
+			
+
+			setTimeout(doPoll, 10000);
+		});
+	}
+</script>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+{% load staticfiles %}	
+
+<div class="row">
+<div class="col-md-12">    
+<h2>Doctor {{fname}}&nbsp;{{lname}}</h2>
+<br>
+<br>
+
+<div class="col-md-2 col-md-offset-1">
+	<img src="/{{pic}}" class="img-polaroid" width="200px" height="200px">
+</div>	
+<div class="col-md-3">
+
+<div style="background-color:#AAAAAA; float:right; margin-right:100px"> 
+
+	<h4 style="margin-left:50px; margin-right:50px;"> Pending calls:</h4>
+
+	<ul id="call_list">
+	{% for i in left_calls %}
+	<li><a href="../../../call/patiet/{{i.id}}"> Call with {{i.patient.first_name}}&nbsp;{{i.patient.last_name}}</a></li>
+	{% endfor %}
+	</ul>	
+</div>
+</div>
+<div class="col-md-6" style="width:auto">
+		<div id="calendar"></div>
+		<br>
+		<a href="http://www.meetashrink.com/cal/" class="btn btn-primary" role="button">Complete List Of Appointments</a>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,544 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<!DOCTYPE html>
+{% block extra_style %}
+<link rel="stylesheet" type="text/css" href="{% static "css/style(carousel).css" %}" />
+
+
+
+<link rel='stylesheet' href="{% static "cupertino/jquery-ui.min.css" %}" />
+<link href="{% static "fullcalendar/fullcalendar.css" %}" rel='stylesheet' />
+<link href="{% static "fullcalendar/fullcalendar.print.css" %}" rel='stylesheet' media='print' />
+<script src="{%static "lib/jquery.min.js" %}"></script>
+<script src="{% static "lib/jquery-ui.custom.min.js" %}"></script>
+<script src="{% static "fullcalendar/fullcalendar.min.js" %}"></script>
+<script>
+/*!
+ * jQuery Modern Blink plugin
+ * https://github.com/leonderijke/Modern-Blink
+ *
+ * Version: 0.1.2
+ * Author: @leonderijke
+ * Licensed under the MIT license
+ */
+
+;(function ( $, window, document, undefined ) {
+		"use strict";
+
+		var domPrefixes = 'Webkit Moz O ms'.split( ' ' ),
+		prefix = '',
+		supportsAnimations = false,
+		keyframeprefix = '',
+		keyframes = '',
+		defaults = {
+		// Duration specified in milliseconds (integer)
+duration:       1000,
+
+// Number of times the element should blink ("infinite" or integer)
+iterationCount: "infinite",
+
+// Whether to start automatically or not (boolean)
+auto:          true
+},
+animationCss,
+i;
+
+if( document.documentElement.style.animationName ) {
+	supportsAnimations = true;
+}
+
+if ( !supportsAnimations ) {
+	for( i = 0; i < domPrefixes.length; i++ ) {
+		if( document.documentElement.style[ domPrefixes[ i ] + 'AnimationName' ] !== undefined ) {
+			prefix = domPrefixes[ i ];
+			keyframeprefix = '-' + prefix.toLowerCase() + '-';
+			supportsAnimations = true;
+			break;
+		}
+	}
+}
+
+if ( supportsAnimations ) {
+	keyframes = '@' + keyframeprefix + 'keyframes modernBlink { '+
+		'50% { opacity: 0; }'+
+			'}';
+
+		var styleSheet = null;
+		if ( document.styleSheets && document.styleSheets.length ) {
+			for ( i = 0; i < document.styleSheets.length; i++ ) {
+				if ( document.styleSheets[ i ].href.indexOf( window.location.hostname ) == -1) {
+					continue;
+				}
+
+				styleSheet = document.styleSheets[ i ];
+				break;
+			}
+		}
+
+		if ( styleSheet !== null ) {
+			styleSheet.insertRule( keyframes, 0 );
+		}
+		else {
+			var s = document.createElement( 'style' );
+			s.innerHTML = keyframes;
+			document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
+		}
+	}
+
+	function ModernBlink( element, options ) {
+		this.el = $(element);
+
+		this.options = $.extend( {}, defaults, options );
+
+		this._init();
+	}
+
+	/*
+	 * @function _init
+	 * Wraps the element, starts the animation
+	 */
+	ModernBlink.prototype._init = function _init() {
+		if ( this.options.auto ) {
+			this.start();
+		}
+
+		this._bindEventHandlers();
+	};
+
+	/*
+	 * @function start
+	 * Starts the animation
+	 */
+	ModernBlink.prototype.start = function start( event ) {
+		if ( supportsAnimations ) {
+			this.el.css({
+					'animation-name':            'modernBlink',
+					'animation-duration':        '' + this.options.duration + 'ms',
+					'animation-iteration-count': '' + this.options.iterationCount
+					});
+		} else {
+			this._fallbackAnimation( this.options.iterationCount );
+		}
+	};
+
+	/*
+	 * @function stop
+	 * Stops the animation
+	 */
+	ModernBlink.prototype.stop = function stop( event ) {
+		if ( supportsAnimations ) {
+			return this.el.css({
+					'animation-name'            : '',
+					'animation-duration'        : '',
+					'animation-iteration-count' : ''
+					});
+		}
+		return this.el.stop( true, true );
+	};
+
+	/*
+	 * @function _fallbackAnimation
+	 * Provides a jQuery Animation fallback for browsers not supporting CSS Animations
+	 */
+	ModernBlink.prototype._fallbackAnimation = function _fallbackAnimation( iterationCount ) {
+		var self = this,
+		    duration = this.options.duration / 2;
+
+		if ( iterationCount > 0 || iterationCount === 'infinite' ) {
+			iterationCount = iterationCount === "infinite" ? "infinite" : iterationCount - 1;
+
+			this.el.animate( { 'opacity': 0 }, duration ).promise().done( function() {
+					self.el.animate( { 'opacity': 1 }, duration );
+					self._fallbackAnimation( iterationCount );
+					});
+		}
+	};
+
+	/*
+	 * @function _bindEventHandlers
+	 * Binds some useful event handlers to the element
+	 */
+	ModernBlink.prototype._bindEventHandlers = function _bindEventHandlers() {
+		this.el.on( 'modernBlink.start', $.proxy( this.start, this ) );
+		this.el.on( 'modernBlink.stop', $.proxy( this.stop, this ) );
+	};
+
+	/*
+	 * @function modernBlink
+	 * jQuery plugin wrapper around ModernBlink
+	 *
+	 * @param options object
+	 */
+	$.fn.modernBlink = function ( options ) {
+		return this.each( function () {
+				if ( !$.data( this, "plugin_modernBlink" ) ) {
+				$.data( this, "plugin_modernBlink", new ModernBlink( this, options ) );
+				} else {
+				options = ( options || "" ).replace( /^_/ , "" );
+				if ( $.isFunction( ModernBlink.prototype[ options ] ) ) {
+				$.data( this, 'plugin_modernBlink' )[ options ]();
+				}
+				}
+				});
+	};
+
+})( jQuery, window, document );
+</script>
+<script>
+jQuery(function($) {
+		$('.blinkable').modernBlink({
+	iterationCount: "2",
+	duration: 1500
+
+});
+		});
+</script>
+<script>
+var eve;
+var date = new Date();
+var d = date.getDate();
+var m = date.getMonth();
+var y = date.getFullYear();
+$(document).ready(function() {
+
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		function convert(time) {
+		var hours = Number(time.match(/^(\d+)/)[1]);
+		var minutes = Number(time.match(/:(\d+)/)[1]);
+		var AMPM = time.match(/\s(.*)$/)[1];
+		if (AMPM == "p.m." && hours < 12) hours = hours + 12;
+		if (AMPM == "a.m." && hours == 12) hours = hours - 12;
+		var sHours = hours.toString();
+		var sMinutes = minutes.toString();
+		if (hours < 10) sHours = "0" + sHours;
+		if (minutes < 10) sMinutes = "0" + sMinutes;
+		return (sHours +':'+sMinutes);
+		}
+		function initial(str) {
+		var x1 = str.split(" ");
+		if(x1[0].length <= 2) x1[0] = x1[0]+":00";
+		x1 = x1[0] +" "+x1[1]
+			return x1;
+		}
+		function getmonth(str) {
+			if(str == "Jan") return 0;
+			else if(str == "Feb") return 1;
+			else if(str == "Mar") return 2;
+			else if(str == "Apr") return 3;
+			else if(str == "May") return 4;
+			else if(str == "Jun") return 5;
+			else if(str == "Jul") return 6;
+			else if(str == "Aug") return 7;
+			else if(str == "Sep") return 8;
+			else if(str == "Oct") return 9;
+			else if(str == "Nov") return 10;
+			else if(str == "Dec") return 11;
+		}
+		$('#calendar').fullCalendar({
+disableDragging:true,
+defaultView: 'agendaDay',
+theme: true,
+editable: false,
+events:function(start,end,callback)
+{
+/*{%for i in left_calls %}
+  {
+title:'Call with {{i.patient.first_name}} {{i.patient.last_name}}',
+start: new Date(2013, 11 , 1 , 1 , 30),//need cal dates(start & end) field in left_calls
+end: new Date(2013,11,1,11,30),
+allDay: false
+},
+{% endfor %}*/
+eve = [
+{
+title: 'Long Event',
+start: new Date(2013, 11, 1),
+end: new Date(2013, 11, 1),
+allDay : true
+},
+
+	]
+{% for i in left_calls %}	
+var s = "{{i.date_booked}}";
+s = s.split(" ");
+var yr = s[2];
+var mnth  = getmonth(s[0].slice(0,3));
+var dy = s[1].slice(0,2);
+if(dy[1]=",") dy = dy[0];
+var start1 = initial("{{i.start_tim}}");
+var end1 = initial("{{i.end_tim}}");
+start1 = convert(start1).split(":");
+end1 = convert(end1).split(":");
+var e = new Object();
+e.title='Call with {{i.patient.first_name}} {{i.patient.last_name}}';
+//e.start = new Date(2013,11,1);
+e.start = new Date(yr,mnth,dy,start1[0],start1[1]);
+e.end = new Date(yr,mnth,dy,end1[0],end1[1]);
+//e.end = new Date(2013,11,1);
+//e.allDay = true;
+e.allDay = false
+eve.push(e);
+//alert(yr+" "+mnth+" "+dy+" "+start1+" "+end1);
+{% endfor %}
+callback(eve);
+}
+});
+$.ajaxSetup({
+cache : false,
+timeout : 1000 * 30
+//set a global ajax timeout of a minute
+});
+
+doPoll(); 
+
+});
+//$(document).ready(function() {
+
+// do the first poll
+//	});
+
+// For every 5 seconds get poll the message for the users. If no messages available, server will return the online users list
+function doPoll() {	
+	$.get('/get/', function(data) {
+
+			//			alert(data);	
+			if(data!="")
+			{	
+			var fname,lname,req_id;
+			recs=data.split('|')[0].split(',');
+			var l=document.createElement('li');
+			var a=document.createElement('a');
+			//alert(recs);
+			for(i=0;i<recs.length-1;i++)
+			{
+			fname=recs[i].split('&')[0];
+			lname=recs[i].split('&')[1];
+			req_id=recs[i].split('&')[2];
+			//alert(recs[i].split('&')[3]);
+			//alert(req_id);
+			l=document.createElement('li');
+			linkS='<a href="../../../call/patient/"'+req_id+' class="blinkable">';
+			//alert(linkS);
+			l.innerHTML=linkS + 'Call with '+ fname + ' ' + lname+'</a>';
+			document.getElementById('call_list').appendChild(l);
+			
+			alert("Request for call received from " + fname + " " + lname);
+			}
+	var e = new Object();
+	var x ="Call with "+String(fname)+" "+String(lname)
+		e.title=x;
+	e.start= new Date(y, m, d , 15 ,0);
+	e.end= new Date(y, m, d , 15 , 30);
+	e.allDay= false;
+	eve.push(e);
+	$('#calendar').fullCalendar('renderEvent',e);
+	//var fname,lname,req_id;
+	recs=data.split('|')[1].split(',');
+	var l=document.createElement('li');
+	var a=document.createElement('a');
+
+	for(i=0;i<recs.length-1;i++)
+	{
+		fname=recs[i].split('&')[0];
+		lname=recs[i].split('&')[1];
+		req_id=recs[i].split('&')[2];
+		alert("Urgent Request for call received from " + fname + " " + lname);
+		l=document.createElement('li');
+		linkS='<a href="../../../icall/patient/" class="blinkable"'+ req_id +'" style="text-decoration:bold;color:red;">';
+		//alert(linkS);
+		l.innerHTML=linkS + 'URGENT Call with '+ fname + ' ' + lname+'</a>';
+		document.getElementById('call_list').appendChild(l);
+	}
+
+
+			}
+	});
+	setTimeout(doPoll, 10000);
+}
+/*	function urgent(){
+	$.get('/getb/',function(data1) {
+	//alert("try");
+/*	if(data!="")
+{	
+alert(data1);
+var fname,lname,req_id;
+recs=data1.split(',');
+var l=document.createElement('li');
+var a=document.createElement('a');
+for(i=0;i<recs.length-1;i++)
+{
+fname=recs[i].split('&')[0];
+lname=recs[i].split('&')[1];
+req_id=recs[i].split('&')[2];
+l=document.createElement('li');
+linkS='<a href="../../../icall/patient/'+ req_id +'" style="text-decoration:bold;color:red;">';
+//alert(linkS);
+l.innerHTML=linkS + 'URGENT Call with '+ fname + ' ' + lname+'</a>';
+document.getElementById('call_list').appendChild(l);
+alert("Urgent Request for call received from " + fname + " " + lname);
+}
+}
+
+});
+
+
+}*/
+</script>
+<style>
+
+body {
+	margin-top: 40px;
+	text-align: center;
+	font-size: 13px;
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
+
+#calendar {   
+
+width:500px;
+margin: 0 auto;
+}
+#paneclass {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+background: #fff;
+border: 1px solid;
+	border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+padding:15px;
+}
+.credit {
+	text-align:left;
+}	
+#hack1 {
+position: relative;
+width: 100%;
+}
+#hack1:before {
+content: "";
+display:block;
+	padding-top:100%;
+}
+#hack3 {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+}
+h2 {
+	font-size:1.75em;
+}
+a:hover, a:visited, a:link, a:active {
+	text-decoration:none;
+}
+.fc-header-title h2 {
+	font-size:1.5em;
+}
+
+.baseheader{
+	margin-top: -3.1em;
+}
+
+.mov-img{
+	margin-left: -3em;
+}
+</style>
+
+
+
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+{% load staticfiles %}	
+
+<div class="page-header" >    
+<h1 style="font-size:45px"><strong>Dr. {{fname}}&nbsp;{{lname}}</strong></h1>
+</div>
+<div class="container" style="padding-top:0px">
+<div class="row">
+<div class="col-md-2 col-md-offset-1 col-sm-3 mov-img" id="paneclass" style="padding:8px">
+<div id="hack1">
+<div id="hack3"><img src="/{{doct.propic}}" class="img-polaroid" style="min-width:100%;height:auto;max-width:100%;max-height:100%"></div>
+</div>
+</div>
+
+
+<div class="col-md-3 col-sm-3">
+<div style="background-color:red;color=white;border-radius=5px;float:right">
+<ul id='broad'>
+
+</ul>
+</div>
+      
+<div id="paneclass"> 
+<h2 style="margin-top:0px;margin-bottom:15px" ><strong>My Notifications:</strong></h2>
+<ul id="call_list" style="font-size:14px">
+
+{% for apt in urgents %}
+<li>
+	Appointment with {{apt.patient.first_name}} {{apt.patient.last_name}} scheduled at {{apt.start_tim}} on {{apt.date_booked}}
+</li>
+{% endfor %}
+{% for i in pending %}
+<li><a href="../../../presc/prescribe/{{i.id}}/1" > Fill Prescription of Patient &nbsp {{i.patient.first_name}} &nbsp{{i.patient.last_name}}</a></li>
+{% endfor %}
+{% for i in left_calls %}
+<li><a href="../../../call/patient/{{i.id}}" > Call with {{i.patient.first_name}}&nbsp;{{i.patient.last_name}}</a></li>
+{% endfor %}
+</ul>	
+</div>
+
+<div id="paneclass">
+<h2 style="margin-top:0px;margin-bottom:15px" ><strong>Reschedule Requests:</strong></h2>
+{% for i in schedule_request %}
+Request from {{i.request_from.first_name}} {{i.request_from.last_name}} to book on {{i.date_booked}} starting at {{i.start_tim}} upto {{i.end_tim}}
+<form>
+<input type="radio" name="accept" value="Accept">Accept
+<input type="radio" name="reject" value="Reject">Reject<br>
+<input type="hidden" name="requestID" value="{{i.id}}">
+<input type="hidden" name="requestFrom" value="{{i.request_from}}">
+<input type="hidden" name="requestedTo" value="{{i.requested_to}}">
+<input type="hidden" name="requestDate" value="{{i.date_booked}}">
+<input type="hidden" name="requestStartTime" value="{{i.start_tim}}">
+<input type="hidden" name="requestEndTime" value="{{i.end_tim}}">
+<input type="submit" class="btn btn-primary btn-sm" style="margin-top:10px;" value="Submit">
+</form>
+
+{% endfor %}
+</div>
+
+</div>
+
+	<div class="col-md-5 col-sm-6" id="paneclass" style="margin-bottom:10px;">
+		<div id="calendar" style="max-width:100%">
+		</div>
+		<br>
+		<!--<a href="http://www.meetashrink.com/cal/" class="btn btn-primary" role="button">Complete List Of Appointments</a>-->
+	</div>
+</div>
+</div>
+</div>
+<a href="{% url 'messageapp:inbox' %}"><button class="btn btn-primary" type="button" >Inbox</button></a>
+
+{% endblock %}

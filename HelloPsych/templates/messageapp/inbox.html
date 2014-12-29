@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+<style type="text/css">
+    input { 
+      height:35px;
+      line-height:normal;
+      padding:7px;
+      font-size:16px;
+      width:200px;
+      outline: none;
+      border: 1px solid #fef8a0; 
+      -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   border-bottom-right-radius:15px;
+		border-top-right-radius:15px;
+	    }
+	.Popregister{
+
+			margin-top: -1em;
+			border-radius:10px;
+			overflow:hidden;
+			width:35em;
+			margin-left: auto;
+			margin-right: auto;
+	}
+		label {font-size:15px; background-color:#8E8E95;width:11em;color:#fff;height: 2.3em;
+		text-align: center;
+		-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+		border-bottom-left-radius:15px;
+		border-top-left-radius:15px;	   
+		line-height: 230%;
+		margin-left: 5em;
+		margin-top: 1em;
+	   }
+		
+	   #id_username{margin-left:-1em;margin-top:0.6em; }
+	   #id_password{margin-left:-1em;margin-top:0.6em; }
+		#id_username:focus {
+        	border: 2px solid #09C;
+        	outline: 0 none;
+        	}
+      #id_password:focus{
+      	 	border: 2px solid #09C;
+        	outline: 0 none;
+      }  
+	   .reg{
+				margin-bottom: 2em;
+		}
+		#error_login{color:red;border: 2px solid red; line-height:1.3; width:25em;margin-left:5em; background-color:#FFA6A6;}
+	.icon-cog{margin-left: -0.5em;}
+	.forgot-pass-css{
+		font-size: 20px;
+		margin-top: 0.8em;	
+	}
+.forgot-text{
+	margin-left: 1em;
+}
+.icon-remove{
+	padding-left: 1px;
+	padding-right: 10px;
+}
+</style>
+
+
+
+
+<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" style="position: absolute;top: 25%; margin-top: -50px">
+	<div class="Popregister breadcrumb" style=" box-shadow:5px 5px 10px #888888;padding-top:10px" > 
+		<div style="text-align:center;width:100%;margin-right:auto; margin-left:auto;">
+	   	<h2 style="font-weight:900;">Inbox</h2>
+			<hr style="border:none">
+			{% for i in mes %}
+
+				<a href="../../message/msg/{{i.id}}"><div><strong>{{i.sender}}:|&nbsp;{{i.subject}}|&nbsp;{{i.dts}}</strong></div></a>
+	
+			{% endfor %}
+
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block extra_style %}
+  <style>
+    [data-presence="online"] {
+        background: green;
+    }
+  </style>
+
+    {% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+      {% block body %}
+      {% endblock %}
+   
+    {% endif %}
+{% endblock %}
+
+  {% include "vline.html" %}
+
+</body>
+</html>

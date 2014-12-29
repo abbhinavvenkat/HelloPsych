@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap, from LayoutIt!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+	<!--script src="js/less-1.3.3.min.js"></script-->
+	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="img/favicon.png">
+		<link rel="stylesheet" type="text/css" href="css/style(carousel).css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css" media="all" />
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
+  
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+</head>
+
+<body>
+<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						 <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="#" class="brand">PsychiatryWalk.In</a>
+						<div class="nav-collapse collapse navbar-responsive-collapse">
+							<ul class="nav">
+								<li>
+									<form method="get" action="/search" id="search">
+  										<input name="q" type="text" size="40" placeholder="PROFILE_NAME" />
+									</form>
+								</li> 
+							</ul>
+							<ul class="nav pull-right">
+								<li>
+									<a href="#">Profile</a>
+								</li>
+								<li>
+									<a href="#">Notifications</a>
+								</li>
+								<li>
+									<a href="#">Logout</a>
+								</li>
+							</ul>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+<div class="well">
+<div class="container-fluid">
+	<div class="row-fluid">
+  		<div class="span4">
+      		<img alt="260x180" style="width: 170px; height: 170px;" src="img/animal8.png" class="img-polaroid">
+  		</div>
+  		<div class="span4">
+  			<table>
+  				<tr>
+  					<td><h3>Profile Info:</h3></td>
+  					<td style="padding:25px"><button type="button" class="btn btn-success">Edit</button></td>
+  				</tr>
+  			</table>
+  				<dl class="dl-horizontal" style="text-align:left">
+  					<dt>Birthday: </dt>
+  					<dd>...</dd>
+  					<dt>Gender: </dt>
+  					<dd>...</dd>
+  					<dt>Relationship Status: </dt>
+  					<dd>...</dd>
+  					<dt>Languages: </dt>
+  					<dd>...</dd>
+  					<dt>Religious Views: </dt>
+  					<dd>...</dd>
+  					<dt>Political Views: </dt>
+  					<dd>...</dd>
+  					<dt>Living: </dt>
+  					<dd>...</dd>
+  					<dt>Mobile Phone: </dt>
+  					<dd>...</dd>
+  					<dt>Email: </dt>
+  					<dd>...</dd>
+				</dl>
+  		</div>
+  		<div class="span4">
+  			<h3>Recent Activity</h3>
+  			<div class="well well-large">
+  				Lorem ipsum dolor sit amet, vero cotidieque vituperatoribus usu eu. Usu alii vide vocibus cu, graecis accommodare te ius. No nam menandri periculis argumentum. Et reque soleat definiebas nam.
+
+Copiosae facilisi volutpat nam ei, ad elaboraret quaerendum reprehendunt vel. Fabulas delicata abhorreant ei pri, velit animal eu ius. No pri illum molestie platonem, an sed impetus laboramus prodesset. Eu munere ullamcorper eum. Ne legere forensibus mel, te quo hinc mandamus indoctum, sit sanctus vivendo ne. Inani numquam adversarium in pro, pri graecis adolescens eu.
+			</div>
+  		</div>
+	</div>
+</div>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+		<!-- the jScrollPane script -->
+		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="js/jquery.contentcarousel.js"></script>
+		<script type="text/javascript">
+			$('#ca-container').contentcarousel();
+		</script>
+</body>
+</html>

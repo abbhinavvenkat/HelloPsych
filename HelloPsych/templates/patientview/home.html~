@@ -1,0 +1,311 @@
+<!doctype html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<script type="text/javascript">
+$(document).ready(function () {
+		$('#select-form img').click(function() {
+			value1 = $(this).attr('data-value');
+			$('#image-value').attr("value", value1);
+			$('#select-form img').removeClass('highlighted');
+			$(this).addClass('highlighted');
+			});
+		});
+</script>
+<style type="text/css">
+
+img.highlighted {
+border:5px solid #428BCA;
+}
+
+.signincss
+{	
+	width:35em;
+	height:20em;
+	margin-left:20em;
+	margin-top:5em;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+	border-radius:10px;
+	overflow:hidden;
+}
+
+.signinfields
+{
+   height:35px;
+   line-height:normal;
+   padding:7px;
+   font-size:16px;
+   width:200px;
+   outline: none;
+   border: 1px solid #fef8a0; 
+   -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  
+}
+
+::-webkit-input-placeholder {color:#B2B2B2;}
+	:-moz-placeholder				 {color:#B2B2B2;}
+	::-moz-placeholder			 {color:#B2B2B2;}
+	:-ms-input-placeholder 		 {color:#B2B2B2;}
+
+</style>
+	<script type = "text/javascript">
+function colour1()
+{
+	document.getElementById("button1").style.backgroundColor = '#428bca';
+	document.getElementById("button1").style.color = '#fff';
+	document.getElementById("button2").style.backgroundColor = '#fff';
+	document.getElementById("button2").style.color = '#428bca';
+	document.getElementById("button3").style.backgroundColor = '#fff';
+	document.getElementById("button3").style.color = '#428bca';
+}
+</script>
+	<script type = "text/javascript">
+function colour2()
+{
+	document.getElementById("button1").style.backgroundColor = '#fff';
+	document.getElementById("button1").style.color = '#428bca';
+	document.getElementById("button2").style.backgroundColor = '#428bca';
+	document.getElementById("button2").style.color = '#fff';
+	document.getElementById("button3").style.backgroundColor = '#fff';
+	document.getElementById("button3").style.color = '#428bca';
+}
+</script>
+<div class="container">
+<div class="row" >
+<div class="hide1">
+<div style="position: absolute; text-align:left; right: auto; margin: 0 auto 20px; z-index: 1; width: 60%; height: auto; left:9%">
+<h2 style="color:#002966; font-weight:100; line-height:1.3; font-family:'Lato',Arial,sans-serif;font-size:2.625em;"><strong>Connecting People With</strong></h2>
+<h2 style="color:#002966; line-height:0.7; font-family:'Lato',Arial,sans-serif; font-weight:400; font-size:2.625em"><strong>Specialists For Better Mental Health!</strong></h2>
+
+</div>
+<div style="position: absolute; text-align:center; top: 37%; left: 52%; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%; height: auto">
+
+	<div class="extra-buttons" style="margin-top:3em">
+		<a data-toggle="modal" href="#myModal1" class="btn btn-info btn-lg" style="">Seek Help</a>
+		<a data-toggle="modal" href="#myModal2" class="btn btn-info btn-lg" style="margin-left:2em;">Explore</a>
+	</div>
+	
+</div>
+<div style="position: absolute; text-align:center; float:left; margin-top:15em; margin-left:5em; z-index: 1; max-width: 100%; height: auto">
+<ul>
+	<li style="display:inline;padding:5px">
+	<a data-placement="bottom" href="#" rel="tooltip" title="Dr. John Smith" class="tooltip-test1" style="display:inline-block">
+		<img class="img-circle" src="{% static "img/a.jpg" %}" alt="..." style="width:80px; height:80px; background-color: #444">
+	</a>
+	<script>  $('.tooltip-test1').tooltip() </script>
+	</li>
+	<li style="display:inline;padding:5px">
+	<a data-placement="bottom" href="/dr/jyothirmayi/" rel="tooltip" title="Dr. Jyothirmayi Hemanth" class="tooltip-test2" style="display:inline-block">
+		<img class="img-circle" src="{% static "propics/Jyothirmayi_1.jpg" %}" alt="..." style="width:80px; height:80px; background-color: #444">
+	</a>
+	<script>  $('.tooltip-test2').tooltip() </script>
+	</li>
+	<li style="display:inline;padding:5px">
+	<a data-placement="bottom" href="#"  rel="tooltip" title="Dr. Shelly Cooper" class="tooltip-test3" style="display:inline-block">
+		<img class="img-circle" src="{% static "img/e.jpg" %}" alt="..." style="width:80px; height:80px; background-color: #444">
+	</a>
+	<script>  $('.tooltip-test3').tooltip() </script>
+	</li>
+	<li style="display:inline;padding:5px">
+	<a data-placement="bottom" href="#" rel="tooltip" title="Dr. Jack Sams" class="tooltip-test4" style="display:inline-block">
+		<img class="img-circle" src="{% static "img/u.jpg" %}" alt="..." style="width:80px; height:80px; background-color: #444">
+	</a>
+	<script>  $('.tooltip-test4').tooltip() </script>
+	</li>
+</div>
+</div> 
+<div id="myModal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" style="width:50%">
+<div class="modal-content" style="background-color:#fef8a0; margin-top:10%;max-width:500px;left:50px">
+<!--   <div class="modal-header" style="border-bottom:none">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<ul class="nav nav-pills" id="myTab" style=" margin: 0 auto; padding-left:33%">
+<li style="margin:0 10px 0 10px" class="active"><a href="#home" data-toggle="pill" id="button1" onclick = "colour1()">Basics</a></li>
+<li style="margin:0 10px 0 10px"><a href="#profile" data-toggle="pill" id="button2" onclick = "colour2()">Concern</a></li>
+</ul>
+</div>-->
+
+<form id="select-form" action="." method = POST>{% csrf_token %}
+<div class="tab-content">
+<div class="tab-pane fade in active" id="home" style="text-align:center">
+<div class="modal-header" style="border-bottom:none">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 style="color:#2a6496">Some Basic Information!</h3>
+</div>
+<div class="modal-body" style="padding:0px">
+<div class="radio-inline">
+<label class="radio-inline">
+<input type="radio" name="sex" id="optionsRadios1" value="male" checked="checked">Male
+</label>
+</div>
+<div class="radio-inline">
+<label class="radio-inline">
+<input type="radio" name="sex" id="optionsRadios2" value="female">Female
+</label>
+</div>
+<div style="text-align:center">
+<hr style="border-top:0">
+Age :&nbsp;&nbsp; 
+<select name="age" class="form-control" style="width:17%; display:inline">
+<option value="lt18"> &lt; 18 </option>
+{% for i in range %}
+<option value="{{i}}"> {{i}} </option>
+{% endfor %}
+<option value="gt70"> &gt;70 </option>
+</select>
+<hr style="border-top:0">
+<div class="radio-inline">
+<label class="radio-inline">
+<input type="radio" name="marital" id="optionsradio2" value="S" checked="checked" >Single
+</label>
+</div>
+<div class="radio-inline">
+<label class="radio-inline">
+<input type="radio" name="marital" id="optionsRadios2" value="M">Married
+</label>
+</div>
+<div class="radio-inline">
+<label class="radio-inline">
+<input type="radio" name="marital" id="optionsRadios1" value="D" >Divorced
+</label>
+</div>
+</div>
+</div>
+<div class="modal-footer" style="border:none">
+<a href="#profile" data-toggle="pill" onclick = "colour2()" style="display:inline-block;padding: 5px 14px;background-color: #eee;border: 1px solid #ddd;border-radius: 15px;float:right">Next &rarr;</a>
+</div>
+</div>
+<div class="tab-pane fade" id="profile" style="text-align:center">
+<div class="modal-header" style="border-bottom:none">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 style="color:#2a6496">What is your main concern ? </h3>
+</div>
+<div class="modal-body" style="padding:0px">
+<center>
+<table cellspacing="10" cellpadding="5" style="float:center">
+<tbody>
+<tr>
+<td><img src="{% static "new_static/img/Selection_006.png" %}" class="img-polaroid" style="border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;-ms-border-radius: 5px;background: #110303;-webkit-transition: background-color 1s linear;-moz-transition: background-color 1s linear;-o-transition: background-color 1s linear;transition: background-color 1s linear;-webkit-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;-moz-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;" alt="Addiction" height="50" width="50/" data-value="addiction"></td>
+<td><img src="{% static "img/Selection_007.png" %}" class="img-polaroid" style="border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;-ms-border-radius: 5px;background: #110303;-webkit-transition: background-color 1s linear;-moz-transition: background-color 1s linear;-o-transition: background-color 1s linear;transition: background-color 1s linear;-webkit-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;-moz-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;"alt="Depression" height="50" width="50/" data-value="depression"></td>
+<td><img src="{% static "img/Selection_008.png" %}" class="img-polaroid" style="border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;-ms-border-radius: 5px;background: #110303;-webkit-transition: background-color 1s linear;-moz-transition: background-color 1s linear;-o-transition: background-color 1s linear;transition: background-color 1s linear;-webkit-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;-moz-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;"alt="Fear and Phobia" height="50" width="50/" data-value="fear"></td>
+<td> <img src="{% static "img/relation.jpg" %}" class="img-polaroid" style="border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;-ms-border-radius: 5px;background: #110303;-webkit-transition: background-color 1s linear;-moz-transition: background-color 1s linear;-o-transition: background-color 1s linear;transition: background-color 1s linear;-webkit-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;-moz-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;"alt="Relationship" height="50" width="50/" data-value="relationship"></td>
+</tr>
+<tr>
+<td style="font-size:13px">  Addiction</a></td>
+<td style="font-size:13px">  Depression</a></td>
+<td style="font-size:13px">  Fear and Phobia</a></td>
+<td style="font-size:13px">  Relationships</a></td>
+</tr>
+<tr>
+<td> <img src="{% static "img/Selection_005.png" %}" class="img-polaroid" style="border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;-ms-border-radius: 5px;background: #110303;-webkit-transition: background-color 1s linear;-moz-transition: background-color 1s linear;-o-transition: background-color 1s linear;transition: background-color 1s linear;-webkit-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;-moz-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;"alt="Major Life Event" height="50" width="50" data-value="life"> </a></td>
+<td> <img src="{% static "img/Selection_002.png" %}" class="img-polaroid" style="border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;-ms-border-radius: 5px;background: #110303;-webkit-transition: background-color 1s linear;-moz-transition: background-color 1s linear;-o-transition: background-color 1s linear;transition: background-color 1s linear;-webkit-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;-moz-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;"alt="Halucination" height="50" width="50/" data-value="halu"></a></td>
+<td> <img src="{% static "img/Selection_001.png" %}" class="img-polaroid" style="border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;-ms-border-radius: 5px;background: #110303;-webkit-transition: background-color 1s linear;-moz-transition: background-color 1s linear;-o-transition: background-color 1s linear;transition: background-color 1s linear;-webkit-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;-moz-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;"alt="Education" height="50" width="50/" data-value="edu"></a></td>
+<td> <img src="{% static "img/facebook-default.jpg" %}" class="img-polaroid" style="border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;-ms-border-radius: 5px;background: #110303;-webkit-transition: background-color 1s linear;-moz-transition: background-color 1s linear;-o-transition: background-color 1s linear;transition: background-color 1s linear;-webkit-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;-moz-box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;box-shadow: inset #000 0 0 3px,rgba(255,255,255,0.15) 0 1px 0;"alt="Other" height="50" width="60/" data-value="anon"></a></td>
+</tr>
+<tr>
+<td style="font-size:13px">Major Life Event</a></td>
+<td style="font-size:13px">Haluncination</a></td>
+<td style="font-size:13px">Education</a></td>
+<td style="font-size:13px">Other</a></td>
+</tr>
+</tbody>
+</table>
+<hr style="border:none">
+</form>
+</center>
+</div>
+<div class="modal-footer" style="border:none">
+<a href="#home" data-toggle="pill" onclick = "colour1()" style="display:inline-block;padding: 5px 14px;background-color: #eee;border: 1px solid #ddd;border-radius: 15px;float:left">&larr; Previous</a>
+<input type="hidden" id="image-value" name="selected_image" value="">
+<button type="submit" class="btn btn-primary" value="" style="position:absolute;left:40%;width:25%" >Submit</button>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" style="width:90%">
+
+
+<div class="modal-content" style="background-color: #fef8a0;">
+ 	<div class="modal-header" style="border:none">
+ 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+ 	<h3 id="myModalLabel" style="text-align:center">Popular Videos</h3>
+ 	
+ </div>
+ <div class="modal-body">
+ <ul class="list-inline">
+<li>
+<a href="http://www.youtube.com/watch?v=PYsuvRNZfxE"><img src="http://i1.ytimg.com/vi/PYsuvRNZfxE/mqdefault.jpg" width="250" height="140"></a>
+<a href="http://www.youtube.com/watch?v=PYsuvRNZfxE"><p>Progressive Muscle Relaxation Meditation</p></a>
+<p>by <a href="http://www.youtube.com/user/UNHHealth">UNH Health Services</a></br>87,380 views</p>
+</li>
+<li>
+<a href="http://www.youtube.com/watch?v=v49-JlN2m7w"><img src="http://i1.ytimg.com/vi/v49-JlN2m7w/mqdefault.jpg" width="250" height="140"></a>
+<a href="http://www.youtube.com/watch?v=v49-JlN2m7w"><p>A remedy for Depression & Anxiety</p></a>
+<p>by <a href="http://www.youtube.com/user/AudioEntrainment">AudioEntrainment</a></br>541,392 views</p>
+</li>
+<li>
+<a href="http://www.youtube.com/watch?v=fyJn_3LkE8w"><img src="http://i1.ytimg.com/vi/fyJn_3LkE8w/mqdefault.jpg" width="250" height="140"></a>    
+<a href="http://www.youtube.com/watch?v=fyJn_3LkE8w"><p>5 Types of Bipolar Disorder</p></a>
+<p>by <a href="http://www.youtube.com/user/illumistream">Healthguru</a></br>372,420 views</p>
+</li> 
+</ul>
+
+</div>
+<div class="modal-footer" style="border:none">
+<button class="btn btn-default" data-dismiss="modal" aria-hidden="true" style="padding: 5px 14px;background-color: #eee;border: 1px solid #ddd;border-radius: 15px;outline: none;">Close</button>
+</div>
+</div>
+</div>
+</div>
+<!--
+<div id="myModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width:90%">
+	
+		<div class="modal-content signincss" style="background-color: #fef8a0;">
+ 			<div class="modal-header" style="border:none">
+ 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+ 				<h3 id="myModalLabel" style="text-align:center"><strong>Sign in</strong></h3>
+			   <form class="form-inline" role="form" id="search" method="post">{% csrf_token %}
+						<table align="center" cellpadding="10">		
+						<tr>						
+							<th><input name="username" autocomplete="off" placeholder="Username" class="signinfields" ></th>	
+						</tr>
+						<tr>						
+							<th><input type="password" name="password"  autocomplete="off"  placeholder="Password" class="signinfields" ></th>
+						</tr>
+						<tr>
+							<th><button type="submit" class="btn btn-primary btn-block">Sign in</button></th>
+						</tr>						
+						</table>				
+				</form>
+ 			</div>
+			<div class="modal-footer" style="border:none">
+				<button class="btn btn-default" data-dismiss="modal" aria-hidden="true" style="padding: 5px 14px;background-color: #eee;border: 1px solid #ddd;border-radius: 15px;outline: none;">Close</button>
+			</div>
+		</div>
+		
+	</div>
+</div>
+-->
+
+
+
+
+</div>
+</div>
+
+{% endblock %}

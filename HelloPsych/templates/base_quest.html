@@ -1,0 +1,135 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meet A Shrink! The place to connect with psychiatrists worldwide. </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="USER" >
+
+<link href="{% static "new_static/css/docs.css" %}" rel="stylesheet"> 
+<link href="{% static "new_static/css/style(carousel).css" %}" rel="stylesheet">
+<link href="{% static "new_static/css/bootstrap.min.css" %}" rel="stylesheet">
+<!--<link href="{% static "new_static/css/docs.css" %}" rel="stylesheet">--> 
+
+<!--<link href="{% static "new_static/css/docs.css" %}" rel="stylesheet">-->
+<link href="{% static "new_static/css/basehtml.css" %}" rel="stylesheet">
+<link href="{% static "new_static/css/loghtml.css" %}" rel="stylesheet">
+<link href="{% static "new_static/css/main1.css" %}" rel="stylesheet">
+<link href="{% static "new_static/css/rating.css" %}" rel="stylesheet">
+<link href="{% static "new_static/css/bootstrap.min1.css" %}" rel="stylesheet">
+<link href="{% static "new_static/css/sticky-footer-navbar1.css" %}" rel="stylesheet">
+<link href="{% static "new_static/css/font-awesome.css" %}" rel="stylesheet">
+<link href="{% static "new_static/css/font-awesome.min.css" %}" rel="stylesheet">
+
+
+<link href="{% static "new_static/css/sticky-footer-navbar.css" %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static "new_static/css/jquery.jscrollpane.css" %}" media="all">
+<link rel="stylesheet" type="text/css" href="{% static "new_static/css/jquery.jgrowl.css" %}" media="all">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow&amp;v1" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Coustard:900" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Rochester" rel="stylesheet" type="text/css">  
+<script type="text/javascript" src="{% static "new_static/js/jquery-1.10.2.js" %}"></script>
+<script type="text/javascript" src="{% static "new_static/js/jquery.contentcarousel.js" %}"></script>
+<script type="text/javascript" src="{% static "new_static/js/jquery.mousewheel.js" %}"></script>
+<script type="text/javascript" src="{% static "new_static/js/bootstrap.min.js" %}"></script>
+<script type="text/javascript" src="{% static "new_static/js/jquery.easing.1.3.js" %}"></script>	
+<style type="text/css">
+	.adjust-css{
+		margin-top: -3.8em;	
+	}
+</style>
+{% block extra_style %}{% endblock %}
+
+</head>
+
+<body style="background:#e6e6e6 url(http://images.apple.com/v/ipod/home/b/images/gradient_texture.png) repeat 0 0;">
+
+<!-- header and content -->
+<div id="container">
+		
+		<!-- header -->
+		<header class="baseheader adjust-css">
+			<div class="icon-div-css">
+				{% if flag %}
+					{% if iconflag %}						
+						<a class="icon-css" href="#" style="color:#fff;padding:7px 5px 0px 15px"><img src="{% static "img/back_logo.png" %}" style="width:160px;height:40px"></a>
+					{% else %}				
+						<a class="icon-css" href="{% url 'patient:index' %}" style="color:#fff;padding:7px 5px 0px 15px"><img src="{% static "img/back_logo.png" %}" style="width:160px;height:40px"></a>				
+					{% endif %}				
+				{% else %}
+					<a class="icon-css" href="{% url 'patient:patient' %}" style="color:#fff;padding:7px 5px 0px 15px"><img src="{% static "img/back_logo.png" %}" style="width:160px;height:40px"></a>
+				{% endif %}
+			</div>
+			<div class="search-div-css">
+					<form method="post" action="{% url 'patient:index_search' %}"id="search">{% csrf_token %}
+						<input name="q" autocomplete="off" type="text" size="100" placeholder="     Search..." class="form-control" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" style="color:#737373;font:15px Arial,Helvetica,Sans-serif;width:210px">
+					</form>
+			</div>
+			<div class="nav-bar-css">
+			{% if not flag %}
+					<a href="{% url 'login:login' %}" type="submit" class="btn btn-lg btn-primary butn-signin" style="margin-left:10px;"><span class="glyphicon glyphicon-log-in icon-login"></span><strong>Sign in</strong></a>
+					<a href="{% url 'login:register' %}" type="submit" class="btn btn-lg btn-primary" style="margin-left:10px;"><span class="glyphicon glyphicon-edit icon-login"></span><strong>Sign up</strong></a>
+			{% else %}
+					<div class="btn-group buton-gr">
+					<button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+   					{% if imdoc %}
+   					<span  class="glyphicon glyphicon-th-list icon-login" ></span>{{ usrname }}<span class="caret dropdown-css"></span>
+					{% else %}
+						<span  class="glyphicon glyphicon-th-list icon-login" ></span><strong style="padding-left:10px;">{{ usrname }}&nbsp;&nbsp;</strong><span class="caret dropdown-css"></span>
+					{% endif %}  
+  					</button>
+  					<ul class="dropdown-menu" role="menu">
+					{% if imdoc %} <!-- if its doctor, these are the nav bar fields -->
+						<li><a href="{% url 'docview:dashboard' doc=usrname %}" type="submit"><strong>My Dashboard</strong></a></li>
+						<li><a href="{% url 'docview:profile' doc=usrname%}"><strong>My Profile</strong></a></li>
+						<li><a href="{% url 'docview:edit' %}" type="submit"><strong>Edit Profile</strong></a></li>
+						<li><a href="{% url 'docview:slot' %}" type="submit"><strong>Timeslots</strong></a></li>
+						<li><a href="{% url 'docview:specialization' %}" type="submit"><strong>Edit Specializations</strong></a></li>
+						<li><a href="{% url 'docview:history' %}"><strong>History</strong></a></li>
+						<li><a href="{% url 'messageapp:inbox' %}" type="submit" ><strong>Inbox</strong></a></li>
+					{% elif not imdoc %} 
+						<li><a href="{% url 'login:editprofile' %}" type="submit"><span class="glyphicon glyphicon-edit icon-st"></span><strong>Edit Profile</strong></a></li>
+						<li><a href="{% url 'patient:history' %}" type="submit"><strong>History</strong></a></li>
+						<li><a href="{% url 'patient:index' %}" type="submit"><span class="glyphicon glyphicon-user icon-st"></span><strong>My Dashboard</strong></a></li>
+						<li><a href="{% url 'messageapp:inbox' %}" type="submit" ><strong>Inbox</strong></a></li>	
+					{% endif %}
+   					<li class="divider"></li>
+  						<li><a href="{% url 'login:logout' %}" type="submit"><span class="glyphicon glyphicon-log-out icon-st"></span><strong>Logout</strong></a></li>
+					</ul>					
+					</div>				
+			{% endif %}
+			</div>
+		</header>
+		
+		<!-- main content goes here -->
+		<div class="main">
+			{% block content %}
+			{% endblock %}
+		</div>
+		
+</div>
+
+<!----footer---->
+<div class="footer-css">
+	<div class="foottext">
+		<p class="text-muted credit" style="color:#fff"> <a style="color:#fff">In Private Alpha</a></p>
+	</div>
+</div>
+
+
+
+<script type="text/javascript" src="{% static "new_static/js/jquery.easing.1.3.js" %}"></script>
+<!-- the jScrollPane script -->
+<script type="text/javascript" src="{% static "new_static/js/jquery.mousewheel.js" %}"></script>
+<script type="text/javascript" src="{% static "new_static/js/jquery.contentcarousel.js" %}"></script>
+<script type="text/javascript">
+$('#ca-container').contentcarousel();
+</script>
+<script type="text/javascript" src="{% static "new_static/js/bootstrap-tooltip.js" %}"></script>
+<script type="text/javascript" src="{% static "new_static/js/tab.js" %}"></script>
+<script type="text/javascript" src="{% static "new_static/js/jquery.jgrowl.js" %}"></script>
+</body>
+</html>

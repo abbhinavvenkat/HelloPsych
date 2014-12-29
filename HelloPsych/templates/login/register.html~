@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Create an account{% endblock %}
+
+
+  <h1>Create an account</h1>
+{% load staticfiles %}
+<img src="{% static "img/nationalanthem.jpg" %}" alt="My image"/>
+  <form action="" method="post">
+      {{ form.as_p }}
+      <input type="submit" value="Create the account">
+  </form>
+
+
+{% block content %}
+
+<div class="well">
+<div class="container-fluid">
+    <div class="well">
+	<div class="row-fluid">
+	<div class="modal" style="position: relative; top: auto; left: auto; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%; height: auto">
+              <div class="modal-header">
+                <h3>Noob, I am your father.</h3>
+              </div>
+              <div class="modal-body" style="text-align:left">
+<!--              	<form>-->
+  			 	<fieldset>
+    		  		<!--<h2>Login</h2>
+    		  		<table align="center" cellpadding="10">
+    		  		<tr align="center">
+    		  		<td><p>Email Address</p></td>
+    				<td align="left"><input type="text" placeholder="Type something…"></td>
+    				</tr>
+    				</br>
+    				<tr align="center">
+    				<td><p>Password</p></td>
+    				<td align="left"><input type="text" placeholder="Type something…"></td>
+    				<td><button class="btn-large btn-primary dropdown-toggle" data-toggle="dropdown">Action </button></td>
+    				</tr>
+    				</table>-->
+					{{ form.as_p }}
+  				</fieldset>
+			  </form>
+			  	<!--<h2>Register</h2>
+                <a href="#myModal1" role="button" data-toggle="modal"><button type="button" class="btn btn-large btn-success">I'm a Patient</button></a>
+                <a href="#myModal2" role="button" data-toggle="modal"><button type="button" class="btn btn-large btn-primary" >I'm a Doctor</button></a>-->
+              </div>
+            </div>		
+	</div>
+	</div>
+</div>
+</div>
+{% endblock %}

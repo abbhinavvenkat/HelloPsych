@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<div class="modal" style="text-align:center">
+              <div class="modal-header">
+                <h3>What is your main concern?</h3>
+              </div>
+	<center>
+	<table cellspacing="10" cellpadding="5">
+	<tr>
+		<td> <a href="../../director/addiction"><img src="{% static "img/Selection_006.png" %}" class="img-polaroid" alt="Addiction" height=100 width=100/></a>
+		
+			
+		<td> <a href="../../director/depression"><img src="{% static "img/Selection_007.png" %}" class="img-polaroid" alt="Depression" height=100 width=100/></a>
+
+		<td> <a href="../../director/fear"><img src="{% static "img/Selection_008.png" %}" class="img-polaroid" alt="Fear and Phobia" height=100 width=100/></a>
+				
+		<td> <a href="../../director/relationship"><img src="{% static "img/relation.jpg" %}" class="img-polaroid" alt="Relationship" height=100 width=100/></a>
+				
+	</tr>
+	<tr>
+		<td align="center" valign="middle"><a href="../../director/addiction">	Addiction</a>
+		<td align="center" valign="middle"><a href="../../director/depression">	Depression</a>
+		<td align="center" valign="middle"><a href="../../director/fear">	Fear and Phobia</a>
+		<td align="center" valign="middle"><a href="../../director/relationship">	Relationships</a>
+	</tr>
+<tr>
+		<td><a href="../../director/life"> <img src="{% static "img/Selection_005.png" %}" class="img-polaroid" alt="Major Life Event" height="100" width="100"/> </a>
+			
+		<td><a href="../../director/halu"> <img src="{% static "img/Selection_002.png" %}" class="img-polaroid" alt="Halucination" height=100 width=100/></a>
+		
+		<td><a href="../../director/edu"> <img src="{% static "img/Selection_001.png" %}" class="img-polaroid" alt="Education" height=100 width=100/></a>
+				
+		<td> <a href="../../director/anon"><img src="{% static "img/facebook-default.jpg" %}" class="img-polaroid" alt="Other" height=10	0 width=100/></a>
+				
+	</tr>
+	<tr>
+		<td><a href="../../director/life">	Major Life Event</a>	
+		<td>	<a href="../../director/halu">Haluncination</a>
+		<td><a href="../../director/edu">	Education</a>
+		<td> 	<a href="../../director/anon">Other</a>
+	</tr>
+
+</table>
+</center>
+<br>
+Not Logged In?
+<a href="{% url 'login:login' %}">Login</button></a>
+<a> |</a>
+<a href="{% url 'login:register' %}">Register</button></a>
+
+<br><br>
+              </div>
+
+
+{% endblock %}

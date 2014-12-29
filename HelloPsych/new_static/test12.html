@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap in practice: the grid system</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Bootstrap CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css" media="all">
+        <link rel="stylesheet" type="text/css" href="css/jquery.jgrowl.css" media="all">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300">
+        <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow&amp;v1" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Coustard:900" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Rochester" rel="stylesheet" type="text/css">  
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+        <!-- To better visualize the columns -->
+        <style>
+        .row > div {
+            background: #fff;
+border: 1px solid;
+border-color: #e5e5e5 #dbdbdb #d2d2d2;
+-webkit-box-shadow: 0px 0px 16px #888888;
+-moz-box-shadow: 0px 0px 16px #888888;
+box-shadow: 0px 0px 16px #888888;
+        }
+        </style>
+
+    </head>
+    <body style="background:#e6e6e6 url(http://images.apple.com/v/ipod/home/b/images/gradient_texture.png) repeat 0 0">
+    <div id="wrap">
+    <div class="navbar navbar-default navbar-fixed-top transparent" >
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" style="color:#fff">PsychiatryWalk.In</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-left">
+          <li><form method="get" action="/search" id="search">
+        <input name="q" type="text" size="100" placeholder="Search..." class="form-control">
+      </form>
+      </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" style="padding-top:10px; width:60%">
+      <li>
+        <form class="form-inline" role="form">
+          <div class="form-group" >
+            <label class="sr-only" for="exampleInputEmail2">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email" style="background: #444; padding: 6px 15px 6px 35px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; border: 0 none; color: #ddd">
+          </div>
+          <div class="form-group" >
+            <label class="sr-only" for="exampleInputPassword2">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" style="background: #444; padding: 6px 15px 6px 35px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; border: 0 none; color: #ddd">
+          </div>
+          <div class="checkbox" >
+            <label style="color: #fff">
+              <input type="checkbox" > Remember me
+              </label>
+          </div>
+          <button type="submit" class="btn btn-default" style="margin-left:10px; background: -webkit-linear-gradient(#637bad, #4f67a4);border: 1px solid #1d3871;-webkit-border-radius: 3px;-webkit-box-shadow: 0 1px 0 #6f85b3 inset, 0 1px 1px rgba(0,0,0,.18); color:#fff">Sign in</button>
+        </form>
+        
+          <!--<ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Profile</a></li>
+            <li><a href="./">Notifications</a></li>
+            <li>
+              <a data-toggle="dropdown" href="www.google.com" class="dropdown-toggle" background="white">
+                <img class="img-circle" src="img/user.jpg" alt="Jason&#39;s Photo" height="23px" >
+                <span>
+                  <small>Welcome,</small>
+                  Jason
+                </span>
+
+                <i class="icon-caret-down"></i>
+              </a>
+
+              <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                <li>
+                  <a href="www.google.com">
+                    <i></i><span class="glyphicon glyphicon-wrench"></span> &nbsp;
+                    Privacy Settings
+                  </a>
+                </li>
+
+
+                <li class="divider"></li>
+
+                <li>
+                  <a href="www.google.com"><span class="glyphicon glyphicon-off"></span> &nbsp;Logout</a>
+                </li>
+              </ul>
+      </li>
+          </ul>-->
+        </div><!--/.nav-collapse -->
+
+      </div>
+    </div>
+        <div class="container">
+
+            
+
+            <div class="row">
+            <h1>Hello, world!</h1>
+
+                <div class="col-md-4">
+                    <p>Asymmetrical YOLO banjo lomo fanny pack, shoreditch flexitarian dreamcatcher ethnic kitsch sriracha nisi sustainable swag. Cliche 90's farm-to-table master cleanse Pinterest jean shorts. Cillum raw denim aesthetic sunt.</p>
+
+                    <p>Aliqua photo booth literally veniam minim leggings, est craft beer banjo intelligentsia Truffaut officia. Irony minim 3 wolf moon meggings, viral hella hoodie selvage flexitarian small batch pariatur.</p>
+                </div>
+                <div class="col-md-4 col-md-offset-4">
+                    <p>Consectetur art party Tonx culpa semiotics. Pinterest assumenda minim organic quis.</p>
+
+                    <p>Wayfarers selvage YOLO, commodo assumenda eu est bespoke mlkshk. Helvetica reprehenderit iPhone, aesthetic 90's literally chambray bicycle rights viral blog voluptate. Occupy bespoke stumptown duis keytar vero.</p>
+                </div>
+
+            </div>
+            </div>
+
+        </div>
+        <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">Example courtesy <a target="blank" href="http://dotabuff.com/players/118289794">RainmaKer </a></p>
+      </div>
+    </div>
+    </body>
+</html>

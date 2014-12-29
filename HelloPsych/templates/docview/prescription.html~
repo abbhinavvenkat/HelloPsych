@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <style type="text/css">
+	    h1{
+		-pdf-outline: true;
+                -pdf-level: 0;
+                -pdf-open: false;
+	    }
+            @page title_template { 
+                font-weight: bold;
+                font-style: italic; 
+            }
+            @page {
+                size: {{ pagesize }} potrait;
+                margin: 1cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 9cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+            }
+        </style>
+    </head>
+    <body>
+	<h1> {{ title }}</h1>
+        <div>
+	    <h3> Symptoms: {{ presc.symptoms }} </h3> <br />
+	    <h3> Doctor: Dr. {{ presc.doc.first_name }} {{ presc.doc.last_name }} </h3> <br />
+	    <h3> Concerns: <ul> 
+			{% for concern in concern_list %} 
+			<li>	{{ concern }} </li>
+			   {% endfor %}
+			   </ul>
+	    </h3> <br />
+	    <h3> Medicines: {{ presc.medicines }} </h3> <br />
+	    <h3> Frequency: {{ presc.frequency }} </h3> <br />
+            
+        </div>
+        <div id="footerContent">
+            {%block page_foot%}
+                Page <pdf:pagenumber>
+            {%endblock%}
+        </div>
+    </body>
+</html>

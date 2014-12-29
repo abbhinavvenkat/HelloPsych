@@ -1,0 +1,129 @@
+{% load vline_tags %}
+{% load staticfiles %}
+{% if user.is_authenticated %}
+
+<script src="https://static.vline.com/vline.js" type="text/javascript"></script>
+<script type="text/javascript" src="{% static "new_static/js/jquery.timer.js" %}"></script>
+<script>
+
+var currentTime;
+var watch = new (function() {
+
+		// Stopwatch element on the page
+
+		var incrementTime = 10000, // Timer speed in milliseconds
+		updateTimer = function() {
+		currentTime +=1;
+		
+		$.get( "/creds/",function( data ) {
+			//  	alert(data);
+			    	if(data=="done")
+					alert("The patient has run out of credits. Please ask them to buy more credits to talk further. Please ensure these are the last 15 minutes of the call!");
+
+			        });
+
+
+		},
+		init = function() {
+		//$stopwatch = $('#stopwatch');
+	
+		currentTime=0;
+		watch.Timer = $.timer(updateTimer, incrementTime, false);
+		};
+
+/*this.resetStopwatch = function() {
+
+	currentTime = 0;
+
+	this.Timer.stop().once();
+
+};*/
+
+$(init);
+
+});
+
+
+var vlineClient = (function(){
+
+		var client, session,
+		authToken = {{ user|vline_auth_token|safe }},
+		serviceId = {% vline_service_id %},
+		profile = {{ user|vline_user_profile|safe }};
+
+		// Create vLine client  
+		window.vlineClient = client = vline.Client.create({"serviceId": serviceId, "ui": true, "uiVideoPanel":"myvid", "uiOutgoingDialog": false,"uiIncomingDialog": true });
+		// Add login event handler
+		client.on('login', onLogin);
+		// Do login
+		client.login(serviceId, profile, authToken);
+		//	person.on('change', function(event) {
+		//	  window.alert('Property ' + event.key + ' changed from ' + event.oldVal + ' to ' + event.val);
+		//	  });
+
+		client.on('add:mediaSession', onMediaSession);
+		// ...
+
+		function onMediaSession(event) {
+			var mediaSession = event.target;
+			mediaSession.
+				on('enterState:active', onEnterActive).
+				on('exitState:active', onExitActive);
+
+		}
+		
+		function onEnterActive()
+		{
+		
+		//	alert("stopped");
+			watch.Timer.play();
+		//	alert("stopped");
+		}
+
+		function onExitActive()
+		{
+			watch.Timer.stop();
+			alert(currentTime);
+		}
+
+		function onLogin(event) {
+			session = event.target;
+
+			// Find and init call buttons
+			var callButtons = document.getElementsByClassName('callbutton');
+			for (var i=0; i < callButtons.length; ++i) {
+				initCallButton(callButtons[i]);
+			}
+		}
+
+
+
+		// add event handlers for call button
+		function initCallButton(button) {
+			var userId = button.getAttribute('data-userid');
+
+			// fetch person object associated with username
+			session.getPerson(userId).done(function(person) {
+					// update button state with presence
+					function onPresenceChange() {
+					button.setAttribute('data-presence', person.getPresenceState());
+					}
+
+					// set current presence
+					onPresenceChange();
+
+					// handle presence changes
+					person.on('change:presenceState', onPresenceChange);
+
+					// start a call when button is clicked
+					button.addEventListener('click', function() {
+						person.startMedia();
+						});
+					});
+		}
+		return client;
+
+})();
+</script>
+
+{% endif %}

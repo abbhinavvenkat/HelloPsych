@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var djangodata = {{ json_data|safe }};
+        var data = google.visualization.arrayToDataTable(djangodata);
+        var options = {
+          title: 'Doctor Patient Appointment Frequency',
+          is3D: true,
+        };
+        var djangodata2 = {{ json_data2|safe }};
+        var data2 = google.visualization.arrayToDataTable(djangodata2);
+        var options2 = {
+          title: 'Doctor Dosage Generic Frequency',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart_3d2'));
+        chart2.draw(data2, options2);
+      
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+    <div id="piechart_3d2" style="width: 900px; height: 500px;"></div>
+  </body>
+
+{% endblock %}

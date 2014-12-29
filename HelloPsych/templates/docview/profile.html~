@@ -1,0 +1,161 @@
+{% extends "base_quest.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<style>
+#paneclass {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+background: #fff;
+border: 1px solid;
+	border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+padding:15px;
+}
+#hack1 {
+position: relative;
+width: 100%;
+}
+#hack1:before {
+content: "";
+display:block;
+	padding-top:100%;
+}
+#hack3 {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+}
+
+</style>
+<div class="row" style="margin-top:10px;margin-bottom:10px">
+<div class="col-md-3 col-md-offset-1 col-sm-4" id="paneclass">
+<div style="padding:6px;background-color:#e5e5e5;border-radius:5px;">
+<div id="hack1">
+<div id="hack3">
+<img src="/{{doct.propic}}" class="img-polaroid" style="min-width:100%;height:auto;max-width:100%;max-height:100%">
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-5 col-sm-6" id="paneclass" style="margin-left:10px;font-size:16px">
+<div class="modal-header">
+	<h2 style="margin:0px">{{doct.first_name}}&nbsp;{{doct.last_name}}, <a href="#degree">{{doct.ug_degree}}</a> , <a href="#degree">{{doct.pg_degree}}i</a></h1>
+</div>
+<div class="modal-body">
+	<p>{{doct.description}}</p>
+	<p><b>I specialize in: </b>
+{% for i in special %}
+<br />
+{% if i.expertise == "anon" %}
+Others
+{% else %}
+{% if i.expertise == "halu" %}
+Hallucinations
+{% else %}
+{% if i.expertise == "fear" %}
+Fear/Phobias
+{% else %}
+{% if i.expertise == "edu" %}
+Education/Career
+{% else %}
+{% if i.expertise == "addiction" %}
+Addictions
+{% else %}
+{{i.expertise}}
+{% endif %}
+{% endif %}
+{%endif%}
+{% endif%}
+{% endif %}
+{% endfor %}
+</p>
+
+</div>
+</div>
+<div class="col-md-2 col-sm-6" id="paneclass" style="margin-left:10px;font-size:16px">
+<p><b>Address:&nbsp; </b><br /><div style="white-space:pre;word-break: break-word;">{{doct.address}}</div></p>
+<p><b>Location:&nbsp; </b><p style="white-space:pre;word-break: break-word;"> {{doct.location}}</p></p>
+<p><b>Contact:&nbsp; </b><p style="white-space:pre;word-break: break-word;"> {{doct.phone_no}}</p></p>
+</div>
+</div>
+<div class="row" style="margin-top:10px;margin-bottom:10px">
+<div class="col-md-3 col-md-offset-1 col-sm-6" id="paneclass" style="font-size:16px">
+	<p style="margin-top:10px;margin-bottom:10px"><b>Timings: </b>
+		<br />
+		{% for i in slots %}
+			{{i.day}} from {{i.start_time}} to {{i.end_time}}
+			<br />
+		{% endfor %}
+	</p>
+<center>
+{% if flagp %}
+{% if not rflag %}
+<a href="../../welcome/fixcall/{{doct.id}}?next=/dr/{{doct.username}}"><button class="btn btn-primary"> Request Call </button></a>
+{% else %}
+<a href="#"><button class="btn btn-success" >Call Requested </button></a>
+{% endif %}
+{% else %}
+<a href="{% url 'login:register' %}" ><button class="btn btn-primary" > Request Call</button></a>
+{% endif %}
+
+
+<a data-toggle="modal" href="#myModal2" class="btn btn-primary" >Message</a>
+
+	<div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width:50%">
+			<div class="modal-content" style="background-color: #fef8a0;">
+				<div class="modal-header" style="border:none">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3 id="myModalLabel" style="text-align:center">Message</h3>
+				</div>
+				<div class="modal-body">
+					<form method="post">
+						{% csrf_token %}
+						Subject: <input type="text" name="subject"><br>
+						Message: <input type="text" name="message">
+						<input type="submit" value="Send" class="btn btn-default" aria-hidden="true" style="padding: 5px 14px;background-color: #eee;border: 1px solid #ddd;border-radius: 15px;outline: none;">
+					</form>
+				</div>
+				<div class="modal-footer" style="border:none">
+				<button class="btn btn-default" data-dismiss="modal" aria-hidden="true" style="padding: 5px 14px;background-color: #eee;border: 1px solid #ddd;border-radius: 15px;outline: none;">Close</button>
+
+
+
+
+</center>
+</div>
+<div class="col-md-3 col-sm-6" id="paneclass" style="margin-left:10px;font-size:16px;width:30%">
+<p><b>Current Employment:&nbsp; </b><br /><p style="white-space:pre;word-break: break-word;">{{doct.current_job}}</p></p>
+</div>
+
+<div class="col-md-4 col-sm-6" id="paneclass" style="margin-left:10px;font-size:16px;width:30%">
+<b style="margin:0px" id="degree">Education</b>
+<p style="margin-top:20px"><b>{{doct.ug_degree}}</b></p>
+<p>{{doct.ug_college}}, {{doct.ug_year}}</p>
+<p><a href="http://online.mciindia.org/online/IMR/IMRSearch.aspx?Name=&RNo={{doct.ug_regno}}">{{doct.ug_regno}}</a>, {{doct.ug_council}}</p>
+<p><b>{{doct.pg_degree}}</b></p>
+<p>{{doct.pg_college}}, {{doct.pg_year}}</p>
+<p><a href="http://online.mciindia.org/online/IMR/IMRSearch.aspx?Name=&RNo={{doct.pg_regno}}">{{doct.pg_regno}}</a>, {{doct.pg_council}}</p>
+</div>
+</div>
+<div class="row" style="margin-top:10px;margin-bottom:10px">
+<div class="col-md-3 col-md-offset-1 col-sm-6" id="paneclass" style="font-size:16px">
+</div>
+<div class="col-md-3 col-md-offset-4 col-sm-4" id="paneclass" style="font-size:16px;width:29.11%;margin-left:10px">
+<p><b>Memberships:&nbsp; </b><br /><p style="white-space:pre;word-break: break-word;">{{doct.memberships}}</p></p>
+<p><b>Projects/Publications:&nbsp; </b><br /><p style="white-space:pre;word-break: break-word;">{{doct.projects}}</p></p>
+</div>
+<div class="col-md-4 col-sm-6" id="paneclass" style="margin-left:10px;font-size:16px;width:29.11%">
+<p><b>Other Qualifications:&nbsp; </b><br /><p style="white-space:pre;word-break: break-word;">{{doct.others}}</p></p>
+</div>
+</div>
+</div>
+{% endblock %}

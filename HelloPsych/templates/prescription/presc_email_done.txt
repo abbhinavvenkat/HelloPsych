@@ -1,0 +1,4 @@
+Hello, {{first_name}} {{last_name}}!
+Your prescription for the appointment with doctor Dr. {{doc_firstname}} {{doc_lastname}} is ready. <br />
+To view it, please visit the link: {{Hostname}}/presc/prescriptions/{{prescrid}}
+Note: You must be logged in as patient to view the prescription.

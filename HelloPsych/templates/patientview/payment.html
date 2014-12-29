@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+// This identifies your website in the createToken call below
+Stripe.setPublishableKey('pk_test_zaEHDfMbWPFBRKFnwp8a1Lly');
+
+jQuery(function($) {
+		$('#payment-form').submit(function(event) {
+			var $form = $(this);
+
+			// Disable the submit button to prevent repeated clicks
+			$form.find('button').prop('disabled', true);
+
+			Stripe.card.createToken($form, stripeResponseHandler);
+
+			//                      Stripe.card.createToken($form, stripeResponseHandler);                  // Prevent the form from submitting with the default action
+			return false;
+			});
+		});
+
+
+var stripeResponseHandler = function(status, response) {
+	var $form = $('#payment-form');
+
+	if (response.error) {
+		// Show the errors on the form
+		$form.find('.payment-errors').text(response.error.message);
+		$form.find('button').prop('disabled', false);
+	} else {
+		// token contains id, last4, and card type
+		var token = response.id;
+		// Insert the token into the form so it gets submitted to the server
+		$form.append($('<input type="hidden" name="stripeToken" />').val(token));
+		// and submit
+		$form.get(0).submit();
+	}
+};
+</script>
+<style>
+#paneclass {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+background: #fff;
+border: 1px solid;
+	border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+padding:15px;
+}
+#hack1 {
+position: relative;
+width: 100%;
+}
+#hack1:before {
+content: "";
+display:block;
+	padding-top:100%;
+}
+#hack3 {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+}
+
+#fix1 {
+	margin-left:30px;
+}
+
+</style>
+<div class="container" style="padding:15px">
+<div class="row" style="margin:auto">
+<div class="col-md-4 col-md-offset-4" id="paneclass" >
+<div style="text-align:center;text-decoration:bold underline">{{msg}}<br> You have {{credits}} credits in your account presently </div>
+<div style="text-align:center">
+<form action="." method="POST" id="payment-form">{% csrf_token %}
+<span class="payment-errors"></span>
+<select name="amnt" style="margin-top:10px">
+<option value="10"> Buy 10 credits for Rs.500 </option>
+<option value="20"> Buy 20 credits for Rs.1000</option>
+</select>
+<div class="form-row" style="margin-top:15px">
+<label>
+<span>Card Number</span>
+<input type="text" size="20" data-stripe="number"/>
+</label>
+</div>
+
+<div class="form-row" style="text-align:left;padding-left:22%">
+<label>
+<span>CVC</span>
+<input type="text" size="4" data-stripe="cvc"/ id="fix1">
+</label>
+</div>
+
+<div class="form-row" style="text-align:left;padding-left:12%">
+<label>
+<span>Expiration (MM/YYYY)</span>
+<input type="text" size="2" data-stripe="exp-month"/>
+</label>
+<span> / </span>
+<input type="text" size="4" data-stripe="exp-year"/>
+</div>
+
+<button type="submit" class="btn btn-primary">Submit Payment</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

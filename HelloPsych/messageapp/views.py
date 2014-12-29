@@ -1,0 +1,52 @@
+from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
+from django.views.decorators.csrf import csrf_protect
+from django.http import HttpResponse
+from login.models import *
+from login.views import *
+from patientview.models import *
+from messageapp.models import message
+from docview.models import *
+from django.template import RequestContext, loader
+from django.shortcuts import render_to_response, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
+from itertools import chain
+from django.contrib.auth import authenticate, login
+from django.views.decorators.cache import cache_control, never_cache
+
+
+
+def inbox(request):
+    if request.user.is_authenticated():
+        if doctor.objects.filter(user=request.user).exists():
+            imdoc=True
+        else:
+            imdoc=False
+    else:
+        imdoc=False
+    mes = []
+    mes = message.objects.filter(receiver=request.user).order_by('dts').reverse()
+    return render_to_response('messageapp/inbox.html', RequestContext(request,{'mes':mes,'usrname':request.user.username,'imdoc':imdoc,'flag':request.user.is_authenticated()}))
+    
+def particular_msg(request, msg_id=1):
+    mes = message.objects.get(id=msg_id)
+    sen = mes.sender
+    rec = mes.receiver
+    chat1 = message.objects.filter(sender=sen,receiver=rec)
+    chat2 = message.objects.filter(sender=rec,receiver=sen)
+    chat = sorted((chain(chat1, chat2)), key=lambda instance: instance.dts)
+    if request.user.is_authenticated():
+        if doctor.objects.filter(user=request.user).exists():
+            imdoc=True
+        else:
+            imdoc=False
+    else:
+        imdoc=False
+    if request.method == 'POST':
+        subject = request.POST['subject']
+        text_message = request.POST['message']
+        sender = request.user
+        msg = message(sender=rec, text_message=text_message,subject=subject, receiver=sen)
+        msg.save()
+    return render_to_response('messageapp/particular_msg.html', RequestContext(request,{'chat':chat,'usrname':request.user.username,'flag':request.user.is_authenticated(),'imdoc':imdoc}))

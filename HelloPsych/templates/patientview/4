@@ -1,0 +1,371 @@
+<!doctype html>
+{% load staticfiles %}
+<html><head>
+  <meta charset="utf-8">
+  <title>MeetaShrink!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="http://sstatic.net/stackoverflow/img/favicon.ico">
+  <link href="{% static "new_static/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "new_static/css/docs.css" %}" rel="stylesheet"> 
+  <link href="{% static "new_static/css/sticky-footer-navbar.css" %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static "new_static/css/jquery.jscrollpane.css" %}" media="all">
+  <link rel="stylesheet" type="text/css" href="{% static "new_static/css/jquery.jgrowl.css" %}" media="all">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow&amp;v1" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Coustard:900" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Rochester" rel="stylesheet" type="text/css">  
+  <script type="text/javascript" src="{% static "new_static/js/jquery-1.10.2.js" %}"></script>
+  <script type="text/javascript" src="{% static "new_static/js/bootstrap.min.js" %}"></script>
+  <script type = "text/javascript">
+        function colour1()
+        {
+            document.getElementById("button1").style.backgroundColor = '#428bca';
+            document.getElementById("button1").style.color = '#fff';
+            document.getElementById("button2").style.backgroundColor = '#fff';
+            document.getElementById("button2").style.color = '#428bca';
+            document.getElementById("button3").style.backgroundColor = '#fff';
+            document.getElementById("button3").style.color = '#428bca';
+        }
+  </script>
+  <script type = "text/javascript">
+        function colour2()
+        {
+            document.getElementById("button1").style.backgroundColor = '#fff';
+            document.getElementById("button1").style.color = '#428bca';
+            document.getElementById("button2").style.backgroundColor = '#428bca';
+            document.getElementById("button2").style.color = '#fff';
+            document.getElementById("button3").style.backgroundColor = '#fff';
+            document.getElementById("button3").style.color = '#428bca';
+        }
+  </script>
+  <script type = "text/javascript">
+        function colour3()
+        {
+            document.getElementById("button1").style.backgroundColor = '#fff';
+            document.getElementById("button1").style.color = '#428bca';
+            document.getElementById("button2").style.backgroundColor = '#fff';
+            document.getElementById("button2").style.color = '#428bca';
+            document.getElementById("button3").style.backgroundColor = '#428bca';
+            document.getElementById("button3").style.color = '#fff';
+        }
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $("#class1").click(function(){
+        $.jGrowl("Hello world!");
+       });
+      });
+
+    (function($){
+      $(document).ready(function(){
+        $.jGrowl.defaults.pool = 5;
+        $.jGrowl.defaults.position = 'bottom-left';
+        var i = 1;
+        setInterval( function() 
+        {
+          if ( i < 5 ) 
+          {
+            $.jGrowl("Message " + i, 
+            {
+              header: "Dr. Rajan", 
+              sticky:     (i % 3 == 0) ? true : false,
+              life:       12000,
+            });
+          }
+          i++;
+        } , 1000 );
+      });
+    })(jQuery);
+    </script>
+</head>
+<body style="background-size:100% 100%">
+<div id="wrap" >
+<div class="navbar navbar-default navbar-fixed-top transparent" >
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" style="color:#fff">PsychiatryWalk.In</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-left">
+          <li><form method="get" action="/search" id="search">
+        <input name="q" type="text" size="100" placeholder="Search..." class="form-control">
+      </form>
+      </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" style="padding-top:10px; width:60%">
+      <li>
+        <form class="form-inline" role="form">
+          <div class="form-group" >
+            <label class="sr-only" for="exampleInputEmail2">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email" style="background: #444; padding: 6px 15px 6px 35px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; border: 0 none; color: #ddd">
+          </div>
+          <div class="form-group" >
+            <label class="sr-only" for="exampleInputPassword2">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" style="background: #444; padding: 6px 15px 6px 35px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; border: 0 none; color: #ddd">
+          </div>
+          <div class="checkbox" >
+            <label style="color: #fff">
+              <input type="checkbox" > Remember me
+              </label>
+          </div>
+          <button type="submit" class="btn btn-default" style="margin-left:10px; background: -webkit-linear-gradient(#637bad, #4f67a4);border: 1px solid #1d3871;-webkit-border-radius: 3px;-webkit-box-shadow: 0 1px 0 #6f85b3 inset, 0 1px 1px rgba(0,0,0,.18); color:#fff">Sign in</button>
+        </form>
+        
+          <!--<ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Profile</a></li>
+            <li><a href="./">Notifications</a></li>
+            <li>
+              <a data-toggle="dropdown" href="www.google.com" class="dropdown-toggle" background="white">
+                <img class="img-circle" src="img/user.jpg" alt="Jason&#39;s Photo" height="23px" >
+                <span>
+                  <small>Welcome,</small>
+                  Jason
+                </span>
+
+                <i class="icon-caret-down"></i>
+              </a>
+
+              <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                <li>
+                  <a href="www.google.com">
+                    <i></i><span class="glyphicon glyphicon-wrench"></span> &nbsp;
+                    Privacy Settings
+                  </a>
+                </li>
+
+
+                <li class="divider"></li>
+
+                <li>
+                  <a href="www.google.com"><span class="glyphicon glyphicon-off"></span> &nbsp;Logout</a>
+                </li>
+              </ul>
+      </li>
+          </ul>-->
+        </div><!--/.nav-collapse -->
+
+      </div>
+    </div>
+<div class="container">
+  <div class="row" >
+  	<div style="position: absolute; text-align:left; right: auto; margin: 0 auto 20px; z-index: 1; width: 60%; height: auto; left:9%">
+  		<h2 style="color:#ecec00; font-weight:100; font-size:2.5vw">Connecting People With </h2>
+  		<h2 style="color:#ecec00; line-height:0.7; font-weight:100; font-size:2.5vw">Specialists For Better Mental Health!</h2>
+
+  	</div>
+  <div style="position: absolute; text-align:center; top: 36%; left: 53%; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%; height: auto">
+                <table align="center" cellpadding="10">
+              <tbody><tr align="center">
+              <td align="left"><a data-toggle="modal" href="#myModal1" class="btn btn-success btn-lg" style="background: -webkit-linear-gradient(#637bad, #4f67a4);border: 1px solid #1d3871;-webkit-border-radius: 3px;-webkit-box-shadow: 0 1px 0 #6f85b3 inset, 0 1px 1px rgba(0,0,0,.18); color:#fff">Seek Help!</a></td>
+            <td align="right"><a data-toggle="modal" href="#myModal2" class="btn btn-primary btn-lg disabled" style="background: -webkit-linear-gradient(#637bad, #4f67a4);border: 1px solid #1d3871;-webkit-border-radius: 3px;-webkit-box-shadow: 0 1px 0 #6f85b3 inset, 0 1px 1px rgba(0,0,0,.18); color:#fff">Explore</a></td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            <div style="position: absolute; text-align:center; top: 46%; left: 38%; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%; height: auto">
+            <table align="center" cellpadding="10">
+            <tbody>
+            <tr align="center">
+            <td>
+              <a href="http://m.facebook.com" data-placement="bottom" href="#" rel="tooltip" title="Dr. John Smith" class="tooltip-test1" style="display:inline-block">
+                <img class="img-circle" src="{% static "img/a.jpg" %}" alt="..." style="width:65px; height:65px; background-color: #444">
+              </a>
+              <script>  $('.tooltip-test1').tooltip() </script>
+            </td>
+            <td>
+              <a data-placement="bottom" href="#" rel="tooltip" title="Dr. Rajesh Williams" class="tooltip-test2" style="display:inline-block">
+                <img class="img-circle" src="{% static "img/c.jpg" %}" alt="..." style="width:65px; height:65px; background-color: #444">
+              </a>
+              <script>  $('.tooltip-test2').tooltip() </script>
+            </td>
+            <td>
+              <a data-placement="bottom" href="#"  rel="tooltip" title="Dr. Shelly Cooper" class="tooltip-test3" style="display:inline-block">
+                <img class="img-circle" src="{% static "img/e.jpg" %}" alt="..." style="width:65px; height:65px; background-color: #444">
+              </a>
+              <script>  $('.tooltip-test3').tooltip() </script>
+            </td>
+            <td>
+              <a data-placement="bottom" href="#" rel="tooltip" title="Dr. Jack Sams" class="tooltip-test4" style="display:inline-block">
+                <img class="img-circle" src="{% static "img/u.jpg" %}" alt="..." style="width:65px; height:65px; background-color: #444">
+              </a>
+              <script>  $('.tooltip-test4').tooltip() </script>
+            </td>
+            </tr>
+            </tbody></table> 
+            </div>
+            
+  </div>
+</div>
+</div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">Example courtesy <a target="blank" href="http://dotabuff.com/players/118289794">RainmaKer </a></p>
+      </div>
+    </div>
+    <script type="text/javascript" src="{% static "new_static/js/jquery.easing.1.3.js" %}"></script>
+    <!-- the jScrollPane script -->
+    <script type="text/javascript" src="{% static "new_static/js/jquery.mousewheel.js" %}"></script>
+    <script type="text/javascript" src="{% static "new_static/js/jquery.contentcarousel.js" %}"></script>
+    <script type="text/javascript">
+      $('#ca-container').contentcarousel();
+    </script>
+    <script type="text/javascript" src="{% static "new_static/js/bootstrap-tooltip.js" %}"></script>
+    <script type="text/javascript" src="{% static "new_static/js/tab.js" %}"></script>
+    <script type="text/javascript" src="{% static "new_static/js/jquery.jgrowl.js"></script>  
+  <div id="myModal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content" style="background-color:#fef8a0">
+        <div class="modal-header" style="border-bottom:none">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+         <ul class="nav nav-pills" id="myTab" style="width: 65%; margin: 0 auto; padding-left:23px">
+            <li style="margin:0 10px 0 10px"><a href="#home" data-toggle="pill" id="button1" onclick = "colour1()">Basics</a></li>
+            <li style="margin:0 10px 0 10px"><a href="#profile" data-toggle="pill" id="button2" onclick = "colour2()">Concern</a></li>
+            <li style="margin:0 10px 0 10px"><a href="#messages" data-toggle="pill" id="button3" onclick = "colour3()">Register</a></li>
+          </ul>
+        </div>
+        <div class="modal-body" >
+          
+
+      <div class="tab-content">
+       <div class="tab-pane active fade" id="home" style="text-align:center">
+        <div class="radio-inline">
+          <label class="radio-inline">
+            <input type="radio" name="optionsRadios1" id="optionsRadios1" value="option1" checked>Male
+          </label>
+        </div>
+        <div class="radio-inline">
+          <label class="radio-inline">
+            <input type="radio" name="optionsRadios1" id="optionsRadios2" value="option2">Female
+          </label>
+        </div>
+        <div style="text-align:center">
+          <hr style="border-top:0">
+          Age:
+          <hr style="border-top:0"> 
+          <select name="age" class="form-control" style="width:50%; display:inline">
+            <option value="lt18"> &lt; 18 </option>
+            <option value="18"> 18 </option>
+            <option value="gt70"> &gt;70 </option>
+          </select>
+          <hr style="border-top:0">
+          <div class="radio-inline">
+            <label class="radio-inline">
+              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >Single
+            </label>
+          </div>
+          <div class="radio-inline">
+            <label class="radio-inline">
+             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Married
+            </label>
+          </div>
+          <div class="radio-inline">
+            <label class="radio-inline">
+              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >Divorced
+            </label>
+          </div>
+        </div>
+        <hr>
+          <ul class="pager" id="myTab" style="height:100%">
+            <li class="next"><a href="#profile" data-toggle="pill" onclick = "colour2()">Newer &rarr;</a></li>
+          </ul>
+      </div>
+       <div class="tab-pane fade" id="profile" style="text-align:center">
+         <h4 style="color:#2a6496">What is your main concern ? </h4>
+         <hr>
+         <center>
+         <table cellspacing="10" cellpadding="5" style="float:center">
+          <tbody>
+          <tr>
+            <td> <a href="../director/addiction" ><img src="img/Selection_006.png" class="img-polaroid" alt="Addiction" height="50" width="50/"></a>  </td>
+            <td> <a href="../../director/depression"><img src="img/Selection_007.png" class="img-polaroid" alt="Depression" height="50" width="50/"></a></td>
+            <td> <a href="../../director/fear"><img src="img/Selection_008.png" class="img-polaroid" alt="Fear and Phobia" height="50" width="50/"></a></td>
+            <td> <a href="../../director/relationship"><img src="img/relation.jpg" class="img-polaroid" alt="Relationship" height="50" width="50/"></a></td>
+          </tr>
+          <tr>
+            <td ><a href="../../director/addiction" style="font-size:13px">  Addiction</a></td>
+            <td ><a href="../../director/depression" style="font-size:13px">  Depression</a></td>
+            <td ><a href="../../director/fear" style="font-size:13px">  Fear and Phobia</a></td>
+            <td ><a href="../../director/relationship" style="font-size:13px">  Relationships</a></td>
+          </tr>
+          <tr>
+            <td><a href="../../director/life" style="font-size:13px"> <img src="img/Selection_005.png" class="img-polaroid" alt="Major Life Event" height="50" width="50"> </a></td>
+            <td><a href="../../director/halu" style="font-size:13px"> <img src="img/Selection_002.png" class="img-polaroid" alt="Halucination" height="50" width="50/"></a></td>
+            <td><a href="../../director/edu" style="font-size:13px"> <img src="img/Selection_001.png" class="img-polaroid" alt="Education" height="50" width="50/"></a></td>
+            <td> <a href="../../director/anon" style="font-size:13px"><img src="img/facebook-default.jpg" class="img-polaroid" alt="Other" height="50" width="60/"></a></td>
+          </tr>
+          <tr>
+            <td><a href="../../director/life"> Major Life Event</a></td>
+            <td >  <a href="../../director/halu">Haluncination</a></td>
+            <td><a href="../../director/edu"> Education</a></td>
+            <td>  <a href="../../director/anon">Other</a></td>
+          </tr>
+          </tbody>
+        </table>
+        </center>
+          <ul class="pager" id="myTab" style="height:100%">
+            <li class="previous"><a href="#home" data-toggle="pill" onclick = "colour1()">&larr; Previous</a></li>
+            <li class="next"><a href="#messages" data-toggle="pill" onclick = "colour3()">Newer &rarr;</a></li>
+          </ul>
+       </div>
+       <div class="tab-pane fade" id="messages" style="text-align:center">
+        <h3 style="color:#2a6496">Register ! </h3>
+        <hr style="border-top:0">
+        <table align="center" cellpadding="10"	>
+          <tbody>
+          <tr>
+            <th><label for="id_username" style="color:#444">Username:</label></th>
+            <td><input id="id_username" max_length="30" name="username" required="True" type="text" class="form-control" style="width:275px"></td>
+          </tr>
+          <tr>
+            <th><label for="id_email">Email address:</label></th>
+            <td><input id="id_email" max_length="30" name="email" required="True" type="text" class="form-control" style="width:275px"></td>
+          </tr>
+          <tr>
+            <th><label for="id_password1">Password:</label></th>
+            <td><input id="id_password1" max_length="30" name="password1" render_value="False" required="True" type="password" class="form-control" style="width:275px"></td>
+          </tr>
+          <tr>
+            <th><label for="id_password2">Password (again):</label></th>
+            <td><input id="id_password2" max_length="30" name="password2" render_value="False" required="True" type="password" class="form-control" style="width:275px"></td>
+          </tr>
+          </tbody>
+          </table>
+          <hr style="border-top:0">
+          <input class="btn btn-default" type="submit" value="Register">
+          <ul class="pager" id="myTab" style="height:100%">
+            <li class="previous"><a href="#profile" data-toggle="pill" onclick = "colour2()">&larr; Previous</a></li>
+          </ul>
+       </div> 
+      </div>
+
+        </div>
+  </div>
+  </div>
+  </div>
+
+  <div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Modal header</h3>
+        </div>
+        <div class="modal-body">
+          <img src="http://theotakuspot.animeblogger.net/wp-content/uploads/2012/10/AW-SHIT-NIGGA.png" style="max-width:100%" alt="Milford Sound in New Zealand">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+  </div>
+  </div>
+  </div>
+
+</body></html>

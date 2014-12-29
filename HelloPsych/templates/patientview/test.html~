@@ -1,0 +1,50 @@
+{% load staticfiles %}
+
+
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml" debug="true">
+	<head>
+		<title>jGrowl Pooling Tests</title>
+		<link href="{% static "css/jquery.jgrowl.css" %}" rel="stylesheet">
+		<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+		<script type="text/javascript" src="{% static "js/jquery.jgrowl.js" %}"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+  			$("#class1").click(function(){
+   			$.jGrowl("Hello world!");
+ 			 });
+			});
+
+		(function($){
+			$(document).ready(function(){
+				$.jGrowl.defaults.pool = 5;
+				$.jGrowl.defaults.position = 'bottom-left';
+				var i = 1;
+				setInterval( function() 
+				{
+					
+					
+					if ( i <= {{lent}}+3 ) 
+					{	
+					
+					$.jGrowl("{{notify.doc.username}}" + i, 
+						{
+							header: '{{notify.patient.username}}',
+							sticky:	(i % 3 == 0) ? true : false,
+							life: 			20000,
+						});
+				}
+					i++;
+			
+				} , 1000 );
+			});
+		})(jQuery);
+		</script>
+	</head>
+	<body>
+		<button id ="class1">sadsadad</button>
+		{{notify.doc.username}}
+		<input type="button" onclick="$.jGrowl({{notify.patient.username}});" value="Default"/>
+	</body>
+</html>
+

@@ -1,0 +1,62 @@
+    input { 
+      height:35px;
+      line-height:normal;
+      padding:7px;
+      font-size:16px;
+      width:200px;
+      outline: none;
+      border: 1px solid #fef8a0; 
+      -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   border-bottom-right-radius:15px;
+		border-top-right-radius:15px;
+	    }
+	.Popregister{
+			background: #ffffff; /* Old browsers */
+			background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+			background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+			margin-top: -1em;
+			border-radius:10px;
+			overflow:hidden;
+			width:35em;
+	}
+		label {font-size:15px; background-color:#8E8E95;width:11em;color:#fff;height: 2.3em;
+		text-align: center;
+		-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+		border-bottom-left-radius:15px;
+		border-top-left-radius:15px;	   
+		line-height: 230%;
+		margin-left: 5em;
+		margin-top: 1em;
+	   }
+		
+	   #id_username{margin-left:-1em;margin-top:0.6em; }
+	   #id_password{margin-left:-1em;margin-top:0.6em; }
+		#id_username:focus {
+        	border: 2px solid #09C;
+        	outline: 0 none;
+        	}
+      #id_password:focus{
+      	 	border: 2px solid #09C;
+        	outline: 0 none;
+      }  
+	   .reg{
+				margin-bottom: 2em;
+		}
+		#error_login{color:red;border: 2px solid red; line-height:0.5; width:25em;margin-left:5em; background-color:#FFA6A6;}
+	.icon-cog{margin-left: -0.5em;}
+	.forgot-pass-css{
+		font-size: 20px;
+		margin-top: 0.8em;	
+	}
+.forgot-text{
+	margin-left: 1em;
+}
+	

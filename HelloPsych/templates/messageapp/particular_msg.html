@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% block content %}
+
+<style type="text/css">
+	.Popregister{
+
+			margin-top: -1em;
+			border-radius:10px;
+			overflow:hidden;
+			width:35em;
+			margin-left: auto;
+			margin-right: auto;
+	}
+
+</style>
+
+<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" style="position: absolute;top: 25%; margin-top: -50px">
+
+<div class="Popregister breadcrumb" style=" box-shadow:5px 5px 10px #888888;padding-top:10px" > 
+		<div style="text-align:center;width:100%;margin-right:auto; margin-left:auto;">
+	   	<h2 style="font-weight:900;">Messages</h2>
+			<hr style="border:none">
+			{% for i in chat %}
+
+				<div><strong>[{{i.sender}}]</strong>&nbsp;&nbsp;&nbsp;<strong>subject</strong>:{{i.subject}}&nbsp;&nbsp;&nbsp;<p><strong>message:</strong>{{i.text_message}}</p><p>&nbsp;{{i.dts}}</p></div><br>
+	
+			{% endfor %}
+
+		</div>
+		<a data-toggle="modal" href="#myModal2" class="btn btn-primary" >Reply</a>
+</div>
+
+
+
+<div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width:50%">
+		<div class="modal-content" style="background-color: #fef8a0;">
+			<div class="modal-header" style="border:none">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel" style="text-align:center">Message</h3>
+			</div>
+			<div class="modal-body">
+			<form method="post">
+				{% csrf_token %}
+					Subject: <input type="text" name="subject"><br>
+					Message: <input type="text" name="message">
+					<input type="submit" value="Send" class="btn btn-default" aria-hidden="true" style="padding: 5px 14px;background-color: #eee;border: 1px solid #ddd;border-radius: 15px;outline: none;">
+			</form>
+			</div>
+			<div class="modal-footer" style="border:none">
+			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true" style="padding: 5px 14px;background-color: #eee;border: 1px solid #ddd;border-radius: 15px;outline: none;">Close</button>
+		</div>
+	</div>
+	</div>	
+</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+<style type="text/css">
+	table { 
+		width: 640px;
+		color: #333;
+		font-family: Helvetica, Arial, sans-serif;
+		border-collapse: collapse; 
+		border-spacing: 0; 
+	} /* Make table wider */
+	td, th { 
+		border: 1px solid #CCC; 
+		height: 30px; 
+	 	transition: all 0.3s;  /* Simple transition for hover effect */
+	} /* Add borders to cells */
+	th {
+	background: #DFDFDF;  /* Darken header a bit */
+	font-weight: bold;
+	text-align: center;
+	}
+ 
+	td {
+	 background: #FAFAFA;
+	 text-align: center;
+	}
+
+	tr:nth-child(even) td { background: #F1F1F1; }   
+	
+	tr:nth-child(odd) td { background: #FEFEFE; }  
+	tr td:hover { background: #999966; color: #FFF; } /* Hover cell effect! */
+	tr td a:hover { background: #999966; color: #FFF; } /* Hover cell effect! */
+#paneclass {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	background: #fff;
+	border: 1px solid;
+	border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	padding: 10px;
+}
+label {
+    display: block;
+    text-indent: -15px;
+}
+.boxalign {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+}
+select {
+      width:100%;
+      font-size:16px;
+}
+#containera { 
+	border:2px solid #ccc; 
+	width:100%; 
+	height: 100% 
+}
+.filter-div{
+	float: left;
+	margin-left: 1em;
+	width: 28%;
+}
+.table-div{
+	float: left;
+	margin-left: 3em;
+}
+.history-div{
+	overflow: hidden;
+}
+
+#id_id_1,#id_appointment__id_1,#id_appointment__date_booked_1,#id_patient__username_1,#id_o{
+	width:4em;
+}
+#id_id_1,#id_appointment__id_1,#id_appointment__date_booked_1,#id_patient__username_1{
+	margin-left: 1em;
+}
+</style>
+<div class="history-div">
+	<div class="filter-div" id="paneclass" style="margin-top:3em;margin-bottom:1.8em;" style="padding: 10px">
+		<div style="text-align:center">
+			<form action="" method="get" class="filter-form">
+    		{% csrf_token %}
+	    	{{ filter.form.as_p }}
+        	<input type="submit" class="btn btn-primary"/>
+    		</form>		
+    	</div>
+	</div>
+	<div class="table-div">
+	<table>
+		<br /><br />
+		<tr>
+			<th>Appointment ID</th>
+			<th>Prescription ID</th>
+			<th>Date Booked</th>
+			<th>Patient Username</th>
+			<th>View Prescription</th>
+			<th>Edit Prescription</th>
+		</tr>
+		{% for obj in filter %}
+        	<tr>
+        		<td>
+        			{{ obj.appointment.id }}
+        		</td>
+        		<td>
+        			{{ obj.id }}
+        		</td> 
+        		<td>
+        			{{ obj.appointment.date_booked }}
+        		</td> 
+        		<td>
+        			{{ obj.patient.username }}
+        		</td>
+        		<td>
+        			<a href="../../presc/prescriptions/{{obj.id}}">
+        			View Prescription
+        			</a>
+        		</td>
+        		<td>
+        			<a href="../../presc/prescribe/{{obj.appointment.id}}/{{obj.medicines.count}}">
+        			Edit Prescription
+        			</a>
+        		</td>
+        	</tr>
+        {% endfor %}
+	</table>
+	</div>
+</div>
+{% endblock %}

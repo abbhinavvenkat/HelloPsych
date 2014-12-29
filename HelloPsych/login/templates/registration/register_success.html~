@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<style type="text/css">
+	.Popregister{
+			background: #ffffff; /* Old browsers */
+			background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+			background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+			margin-top: 2em;
+			border-radius:10px;
+			overflow:hidden;
+			width:35em;
+			margin-right:auto; margin-left:auto;
+	}
+	.sample-mail{
+		font-size: 20px;	
+	}
+	.icon-envelope{
+		padding-right: 10px;	
+	}
+</style>
+<div class="col-md-6" style="position: absolute;top: 20%; margin-top: -50px;margin-left:25%">
+	<div class="Popregister" style="background-color:#fef8a0; box-shadow:5px 5px 10px #888888;padding-top:10px" > 
+      <div style="text-align:center">
+		<form method="post" action=".">
+		{% csrf_token %}
+		<h3 align="center" class="titlemsg"> <strong>Registration complete</strong> </h3>
+		<p>Congratulations, You have registered for a 
+			{% if acc %} 
+				<strong>Doctor</strong>
+			{% else %}
+				<strong>Patient</strong>
+			{% endif %}
+			<strong>Account</strong> .
+		</p>
+		<p>You should shortly receive an email to activate your account.</p>
+		<div class="sample-mail">
+		<p><a href="https://mail.google.com/" target="_blank"><span class="glyphicon glyphicon-envelope icon-envelope"></span><strong>Gmail</strong></a></p>
+		<p><a href="https://www.hotmail.com/" target="_blank"><span class="glyphicon glyphicon-envelope icon-envelope"></span><strong>Hotmail</strong></a></p>
+		<p><a href="https://login.yahoo.com/" target="_blank"><span class="glyphicon glyphicon-envelope icon-envelope"></span><strong>Yahoo! Mail</strong></a></p>
+		</div>		
+		</form>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,6 @@
+Hello, {{first_name}} {{last_name}}!
+Your prescription for the appointment with doctor {{doc_firstname}} {{doc_lastname}} has now been modified.
+To view the changes, please visit the link
+{{Hostname}}/presc/prescriptions/{{prescrid}}
+Note: You must be logged in as patient to view the prescription.
+

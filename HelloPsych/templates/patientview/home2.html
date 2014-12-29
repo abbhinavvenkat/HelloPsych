@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<div class="modal" style="text-align:center">
+              <div class="modal-header">
+                <h3>Connecting people with specialists for better mental health!</h3>
+              </div>
+<br>
+<a href="help"><button type="button" class="btn btn-large btn-primary">Seek Advice</button></a>
+<button type="button" class="btn btn-large btn-success">Explore</button>
+<br>
+<ul class="thumbnails" style="padding:10px 10px 10px 100px">
+  <li>
+    <a href="#" class="thumbnail">
+      <img src="../../static/img/animal1.png" alt="" width="75" height="75">
+    </a>
+  </li>
+  <li>
+    <a href="#" class="thumbnail">
+      <img src="../../static/img/animal2.png" alt="" width="75" height="75">
+    </a>
+  </li>
+  <li>
+    <a href="#" class="thumbnail">
+      <img src="../../static/img/animal3.png" alt="" width="75" height="75">
+    </a>
+  </li>
+  <li>
+    <a href="#" class="thumbnail">
+      <img src="../../static/img/animal4	.png" alt="" width="75" height="75">
+    </a>
+  </li>
+ </ul>
+<br>
+Not Logged In?
+<a href="{% url 'login:login' %}">Login</a>
+<a> |</a>
+<a href="{% url 'login:register' %}">Register</a>
+<br><br>
+</div>
+
+
+{% endblock %}

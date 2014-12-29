@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+#paneclass {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	background: #fff;
+	border: 1px solid;
+	border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	padding:10px;
+}
+label {
+    display: block;
+    text-indent: -15px;
+}
+.boxalign {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+}
+select {
+      width:100%;
+      font-size:16px;
+}
+#containera { border:2px solid #ccc; width:100%; height: 100% }
+</style>
+
+
+<div class="row">
+	<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" id="paneclass" style="margin-top:3em;margin-bottom:1.8em;">
+		<div style="text-align:center">
+			<form method="post" action="specialization">{% csrf_token %}
+			<fieldset>
+			<h2 align="center" class="page-header" style="border:none;margin:0;">Add a new specialization!</h2>
+			<select name="expertise" class="form-control" style="width:50%; display:inline;margin-top:10px">
+				{% for spec in specs %}
+				<option value="{{ spec }}"> {{ spec }} </option>
+				{% endfor %}	
+			</select>
+			</fieldset>
+		
+				<input class="btn btn-primary" type="submit" value="Add" style="margin-top:10px;font-size:16px;width:50%"/>
+
+			</form>
+			<div style="text-align:center">
+			<h3> Existing Specializations: </h3>
+				<div id="containera">
+				{% for i in existing %}
+				<input class="boxalign" value="{{ i.expertise}} " type="checkbox">
+				<h4 class="txt">{{i.expertise}}</h4>
+				{% endfor %}
+				</div>
+				<input type="button" value="Delete checked boxes" onclick = "delBoxes();" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" >
+delBoxes = function()
+{
+    var boxes = document.getElementsByClassName('boxalign');
+    var texts = document.getElementByClassName('txt');
+    for(var i = boxes.length - 2; i>=0; i--)
+    {
+        box = boxes[i];
+        txt = texts[i];
+        if(box.checked)
+        {
+           	box.parentNode.removeChild(box);
+           	txt.parentNode.removeChild(txt);
+           	i++;    
+        }
+    }
+}
+</script>
+{% endblock %}
+

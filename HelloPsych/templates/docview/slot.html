@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+#paneclass {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	background: #fff;
+	border: 1px solid;
+	border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	padding:15px;
+}
+input {
+	height: 34px;
+        font-size: 16px;
+        width: 100%;
+	outline: none;
+        border: 1px solid #fff;
+	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+        -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+        padding:10px;
+}
+select {
+	width:100%;
+	font-size:16px;
+}
+</style>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="paneclass" style="margin-top:10px;margin-bottom:10px">
+		<div style="text-align:center">
+			<form method="post" action="timeslot">{% csrf_token %}
+				<fieldset>
+				<h2 align="center" class="page-header" style="border:none;margin:0">
+					Add a new Time Slot
+				</h2>
+				<table align="center" cellpadding="10">
+					{{ form.as_table }}
+				</table>
+				<input class="btn btn-primary" type="submit" name="save" value="Submit" style="width:180px;font-size:16px;margin-top:10px" />
+			</form>
+				<h3> Existing Slots </h3>
+			<form method="post" action="timeslot">{% csrf_token %}
+				<ul>
+					{% for i in existing %}
+						<li><input type="checkbox" {% if i.enabled %}checked{% endif %} name="{{i.id}}" style="height:inherit;width:inherit;margin-right:20px">{% if i.enabled%} Enabled {% else %} Disabled {% endif %} <b>{{i.day}} : </b> {{i.start_time}} to {{i.end_time}}</li>
+					{% endfor %}
+				</ul>
+				<input class="btn btn-primary" type="submit" name="save_slot" value="Save" style="width:180px;font-size:16px;margin-top:10px" />
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

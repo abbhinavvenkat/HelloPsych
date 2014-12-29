@@ -1,0 +1,17 @@
+{% extends "vbase.html" %}
+{% load i18n %}
+
+{% block body %}
+
+{% if users %}
+    {% for user in users %}
+	{{user}}
+    <div class="row">
+      <div class="span4">
+        <p><button data-userid="{{ user.id }}" class="btn callbutton">Call {{ user.displayName }}</button></p>
+      </div>
+    </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

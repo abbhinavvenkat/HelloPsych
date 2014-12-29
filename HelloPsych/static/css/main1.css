@@ -1,0 +1,232 @@
+body{
+  background-image: url('../images/background.jpg');
+  background-color: #cccccc;
+}
+ 
+#paneclass {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+background: #fff;
+border: 1px solid;
+	border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+padding:15px;
+
+margin-left:30px;position:relative;bottom:15px;left:8px;
+}
+#details
+{
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+background: #fff;
+border: 1px solid;
+	border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+padding:15px;
+	position: relative;
+top: 10px;
+left:37px;
+}
+#videos
+{
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+background: #fff;
+border: 1px solid;
+	border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+padding:15px;
+	position: relative;
+	left:63px;
+	top:10px;
+}
+#appointment
+{
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+background: #fff;
+border: 1px solid;
+	border-color: #e5e5e5 #dbdbdb #d2d2d2;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+padding:15px;
+	position: relative;
+	margin-left:25px;
+	bottom:14px;
+}
+.row1
+{
+	margin-top:40px;margin-bottom:10px;margin-right:4px;margin-left:11px;
+}
+.row2
+{
+	
+	
+	margin-top:10px;margin-bottom:-66px;
+}
+
+#hack1 {
+position: relative;
+width: 100%;
+}
+#hack1:before {
+content: "";
+display:block;
+	padding-top:100%;
+}
+#hack3 {
+position: absolute;
+top: 5px;
+height: 10px;
+left: 13px;
+width: 50px;
+}
+#online
+{
+padding:9px;
+text-align:center;
+border:solid 1px #c3c3c3;
+font-size: 16px;
+width:164px;position:relative;bottom:63px;left:40px;background-color: #5cb85c;
+}
+#offline
+{
+ padding:9px;
+text-align:center;
+border:solid 1px #c3c3c3;
+font-size: 16px;
+display:none;
+margin-bottom: 60px;
+position:relative;width:172px;left:32px;bottom:20px;background-color:#d9534f;
+}
+#fee
+{
+padding:9px;
+text-align:center;
+border:solid 1px #c3c3c3;
+font-size: 16px;
+position:relative;bottom:6px;width:130px;left:426px;background-color:dimgrey;
+
+}
+#fee1
+{
+padding:9px;
+text-align:center;border:solid 1px #c3c3c3;
+font-size: 16px;
+position:relative;bottom:48px;width:130px;left:296px;background-color:dimgrey;
+}
+#contact,#consulting
+{
+  padding:9px;
+text-align:center;
+background-color: white;
+border:solid 1px #c3c3c3;
+font-size: 16px;
+display:none;
+margin-bottom: 60px;
+position:relative;bottom:20px;
+}
+
+.span6
+{
+	position: relative;
+left: 15px;
+bottom:16px;
+}      
+.span12
+{
+	position: relative;
+top: 12px;
+left: 10px;
+}
+#content
+{
+	padding:3px;background-color:#e5e5e5;border-radius:5px;
+}
+
+#paddin
+{
+	padding:3px;background-color:#e5e5e5;border-radius:5px;font-size:large;
+}
+
+.row1
+{
+	margin-top:40px;
+	margin-bottom:10px;
+	margin-right:4px;
+	margin-left:11px;
+}	
+.row2
+{
+	margin-top:40px;margin-bottom:10px;margin-right:4px;margin-left:11px;
+}
+
+
+.btn-primary
+{
+	position:relative;bottom:7px;
+	margin-right: 10px;
+
+}
+.btn-success
+{
+	width:200px;position:relative;left:43px;bottom:63px;
+}
+.modal-body
+{
+	position:relative;padding:13px;
+}
+.col-xs-12.col-md-8
+{
+	width:66.666666%;
+	position: relative;
+right: 29px;
+}
+.modal-header
+{
+	min-height:16.428571px;padding:4px;border-bottom:1px solid #e5e5e5;
+}
+
+h4
+{
+position:relative;bottom:110px;right:35px;
+}
+h2
+{
+	margin:5px;font-size:35px
+}
+.well
+{
+	position:relative;left:1px;
+}
+.star
+{
+	position:relative;left:7px;
+}
+#video1
+{
+	position:relative;right:100px;bottom:128px;
+}
+#video2
+{
+	position:relative;left:32px;bottom:274px;
+}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<style type="text/css">
+.welcome-css{
+	width: 60%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.doc-row{
+	width:60%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 2.5em;
+	overflow: hidden;
+}
+
+.select-doc{
+	margin-left: auto;
+	margin-right: auto;
+	width:20em;
+	padding-top: 2.5em;
+}
+.doc-select{
+	margin-left: auto;
+	margin-right: auto;
+}
+.welcome-css{
+	width: 60%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.credits{
+	width:25em;
+	overflow: hidden;
+	margin-left:71em;
+	position: absolute;
+}
+.buy-credit{
+	float: right;
+}
+.call-request{
+	position: absolute;
+	margin-left: 71em;
+	width:25em;
+	margin-top: 4em;
+}
+.callbtn{
+	float: right;
+}
+.regulate{
+	overflow: hidden;
+}
+.butn{
+margin-top: 0.7em;
+}
+</style>
+
+<div class="search-done">
+
+	<h1 class="breadcrumb welcome-css">Welcome to HelloPsych</h1>                
+  	{% for i in docs %}
+	<div class="doc-row">
+   	<div class="docprof">
+      	<div class="breadcrumb regulate">
+            <img src="/{{i.propic}}" style="width: 80px; height: 80px; float:left;">
+            <div class="caption" style="text-align:center">
+            <h4 style="float:left; margin-left:5em;font-size:25px;margin-top:1em;"><a href="../../dr/{{i.username}}">Dr.{{i.first_name}}&nbsp;{{i.last_name}}</a> </h4>
+    		
+	    		
+	    		{% if  flag %}
+					{% if  i.rflag %}
+         			<a href="#" class="btn btn-success btn-lg butn" style="float:right;" >Call Requested</a>
+					{% else %}
+						<a href="../../cal/{{i.id}}?next=/welcome/index"><button class="btn btn-success btn-lg butn" style="float:right;" onClick="smsdoc('{{i.phone_no}}','{{user.username}}');"> Request Call</button></a> 
+					{% endif %}  
+      		{% else %}
+        			<a href="{% url 'login:register' %}"><button class="btn btn-success btn-lg butn" style="float:right;"><span class="glyphicon glyphicon-earphone"></span> Request Call</button></a> 
+      		{% endif %} 
+      		</div>
+			</div>
+		</div>
+	</div>
+   {% if forloop.counter|divisibleby:"4" %}
+   {% endif %}
+   {% endfor %}
+</div>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+</div>
+{% endblock %}
